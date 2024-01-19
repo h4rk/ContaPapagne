@@ -7,7 +7,7 @@
   - Identify core functionalities of the personal finance app.
   - Determine target audience and platform.
 
-- [ ] **Technology Stack Selection**
+- [x] **Technology Stack Selection**
   - Backend: Spring Boot with Java.
   - Frontend: HTML, JavaScript (Vanilla + HTMX + optional jQuery), Tailwind CSS.
   - Database: Decide on technology and define schema.
@@ -15,7 +15,7 @@
 
 ## Phase 2: Development Setup and Documentation
 
-- [ ] **Development Environment Setup**
+- [x] **Development Environment Setup**
   - Set up development environments for frontend and backend.
   - Establish version control using Git.
 
