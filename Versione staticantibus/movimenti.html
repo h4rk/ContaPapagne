@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movimenti</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+
+<!-- Navbar -->
+<nav class="bg-gray-800 p-4 text-white">
+  <div class="container mx-auto flex justify-between items-center">
+    <a href="index.html" class="text-xl mx-2">ContaPapagne</a>
+      <div>
+          <a href="movimenti.html" class="text-xl mx-2">Movimenti</a>
+          <a href="investimenti.html" class="text-xl mx-2">Investimenti</a>
+          <a href="categorie.html" class="text-xl mx-2">Categorie</a>
+      </div>
+  </div>
+</nav>
+
+
+    <!-- Form Section -->
+    <div class="container mx-auto my-8 p-8">
+        <div class="w-full max-w-lg mx-auto">
+            <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                <h2 class="text-xl font-bold mb-4">Registra Movimento</h2>
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="data_movimento">
+                        Data
+                    </label>
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="data_movimento" type="date" placeholder="Data Movimento">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="importo_movimento">
+                        Importo
+                    </label>
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="importo_movimento" type="number" placeholder="Importo">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="descrizione_movimento">
+                        Descrizione
+                    </label>
+                    <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="descrizione_movimento" placeholder="Descrizione"></textarea>
+                </div>
+                <div class="flex items-center justify-between">
+                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+                        Registra
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
