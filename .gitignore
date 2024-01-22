@@ -8,6 +8,7 @@ ContaPapagneVenv/
 instance/
 .webassets-cache
 .env
+__pycache__/
 
 # Environments
 .venv
