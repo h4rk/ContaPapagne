@@ -12,3 +12,5 @@ Applicativo per contare e tenere traccia delle papagne.
 7. Spuntare il file requirements.txt
 8. Finito
 
+## Esecuzione backend
+Per eseguire il backend in modalità debug basta eseguire lo script python "flask-run-debug.py"
