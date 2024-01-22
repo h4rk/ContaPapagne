@@ -1,0 +1,177 @@
+
+
+
+{% extends "base.html" %}
+
+{% block title %}
+Dashboard - ContaPapagne
+{% endblock %}
+
+{% block head %}
+{{ super() }}
+{% endblock %}
+
+{% block content %}
+<body class="bg-gray-100">
+
+
+    <style>
+      .button-fill-effect {
+          position: relative;
+          background-color: #388d85; 
+          border: none;
+          color: #bbf3ed; 
+          padding: 10px 20px;
+          font-size: 16px;
+          cursor: pointer;
+          transition: color 0.5s;
+          border-radius: 4px;
+          overflow: hidden;
+          z-index: 0;
+      }
+      
+      .button-fill-effect::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 0;
+          height: 100%;
+          background-color: #ec9154; 
+          transition: width 0.5s;
+          border-radius: 4px;
+          z-index: -1;
+      }
+      
+      .button-fill-effect:hover::after {
+          width: 100%;
+      }
+      
+      .button-fill-effect span {
+          position: relative;
+          z-index: 1;
+      }
+      
+      .button-fill-effect:hover {
+          color: #fce2d1; /* Ensuring text color contrasts well with #FFA17A */
+      }
+      </style>
+      
+      
+  
+  
+      {{ super() }}
+  
+  
+  <!-- Hero Section -->
+  <div class="container mx-auto my-8">
+      <div class="text-center mb-8">
+          <h2 class="text-3xl font-bold">Dashboard ContaPapagne</h2>
+          <p class="text-xl">Un'occhiata alle vostre papagne finanziarie.</p>
+      </div>
+  
+      <!-- Overview Section -->
+      <div class="grid md:grid-cols-4 gap-4 mb-8">
+          <!-- Totale Investimenti -->
+          <div class="bg-white rounded shadow p-4 flex items-center justify-between">
+              <div>
+                  <span class="block text-sm font-bold text-gray-500">Totale Investimenti</span>
+                  <span class="block text-lg font-bold">€7.500</span>
+              </div>
+              <div class="text-green-500">
+                  💹
+              </div>
+          </div>
+  
+          <!-- Totale Entrate -->
+          <div class="bg-white rounded shadow p-4 flex items-center justify-between">
+              <div>
+                  <span class="block text-sm font-bold text-gray-500">Totale Entrate</span>
+                  <span class="block text-lg font-bold">€5.000</span>
+              </div>
+              <div class="text-blue-500">
+                  💰
+              </div>
+          </div>
+  
+          <!-- Totale Uscite -->
+          <div class="bg-white rounded shadow p-4 flex items-center justify-between">
+              <div>
+                  <span class="block text-sm font-bold text-gray-500">Totale Uscite</span>
+                  <span class="block text-lg font-bold">€-950</span>
+              </div>
+              <div class="text-red-500">
+                  📉
+              </div>
+          </div>
+  
+          <!-- Saldo Attuale -->
+          <div class="bg-white rounded shadow p-4 flex items-center justify-between">
+              <div>
+                  <span class="block text-sm font-bold text-gray-500">Saldo Attuale</span>
+                  <span class="block text-lg font-bold">€4.050</span>
+              </div>
+              <div class="text-purple-500">
+                  🏦
+              </div>
+          </div>
+      </div>
+  
+      <!-- Dettagli -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <!-- Grafici e tabelle if we vogliamo -->
+          <div class="md:col-span-2 lg:col-span-1 bg-white rounded shadow p-4">
+              <h3 class="font-bold text-lg mb-2">Andamento Investimenti</h3>
+              <!-- Placeholder per chart -->
+              <div class="h-40 bg-gray-200 rounded flex items-center justify-center">
+                  <span>Chart JS Placeholder</span>
+              </div>
+          </div>
+  
+          <!-- Categorie con Budget -->
+          <div class="md:col-span-2 lg:col-span-2 bg-white rounded shadow p-4">
+              <h3 class="font-bold text-lg mb-2">Panoramica Categorie</h3>
+              <div class="grid grid-cols-2 gap-4">
+                  <!-- Ogni categoria con il suo budget (oppure le principali boh) -->
+                  <div class="p-2 bg-blue-100 rounded">
+                      <span class="block text-sm font-bold">Casa</span>
+                      <span class="block text-lg">€1.200</span>
+                  </div>
+                  <div class="p-2 bg-green-100 rounded">
+                      <span class="block text-sm font-bold">Lavoro</span>
+                      <span class="block text-lg">€800</span>
+                  </div>
+                  <div class="p-2 bg-yellow-100 rounded">
+                      <span class="block text-sm font-bold">Tempo Libero</span>
+                      <span class="block text-lg">€500</span>
+                  </div>
+                  <div class="p-2 bg-red-100 rounded">
+                      <span class="block text-sm font-bold">Spese Varie</span>
+                      <span class="block text-lg">€450</span>
+                  </div>
+              </div>
+          </div>
+      </div>
+  
+  <!-- Aggiungi nuovo movimento form -->
+  <div class="mt-8 max-w-lg mx-auto">
+    <h3 class="text-lg font-bold mb-4">Aggiungi Nuovo Movimento</h3>
+    <form class="bg-white rounded shadow p-6">
+        <div class="grid grid-cols-1 gap-4">
+            <input type="text" placeholder="Descrizione" class="border p-2 rounded">
+            <input type="number" placeholder="Importo" class="border p-2 rounded">
+            <select class="border p-2 rounded">
+                <option value="entrata">Entrata</option>
+                <option value="uscita">Uscita</option>
+            </select>
+            <button type="button" class="button-fill-effect">
+              Aggiungi Movimento
+          </button>
+        </div>
+    </form>
+  </div>
+  
+  
+  
+  </body>
+{% endblock %}
