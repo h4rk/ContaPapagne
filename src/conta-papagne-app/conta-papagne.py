@@ -1,19 +1,14 @@
-from flask import Flask
-from flask import render_template
+from flask import Flask, render_template
+from blueprints.movimenti import mov
+from blueprints.investimenti import inv
+from blueprints.budgets import bud
+from blueprints.settings import set
 app = Flask(__name__)
+app.register_blueprint(mov)
+app.register_blueprint(inv)
+app.register_blueprint(bud)
+app.register_blueprint(set)
 
 @app.route("/")
 def home():
     return render_template("dashboard-variant.html")
-
-@app.route("/categorie")
-def categorie():
-    return render_template("categorie.html")
-
-@app.route("/movimenti")
-def movimenti():
-    return render_template("movimenti.html")
-
-@app.route("/investimenti")
-def investimenti():
-    return render_template("investimenti.html")
