@@ -2,16 +2,22 @@
 <head>
 {% include 'head.html' %}
   <title>{% block title %}ContaPapagne{% endblock %}</title>
+<link rel="stylesheet" href="../static/css/button-style.css">
 {% block head %}{% endblock %}
 </head>
 <body class="bg-gray-100">
+<div class="flex flex-col justify-between mx-auto h-full">
   
-{% block style %}{% endblock style %}
-  {% include 'navbar.html' %}
+ 
+{% include 'navbar.html' %}
+<main class="container mx-auto flex flex-col justify-between">
+
 {% block content %}
 {% endblock content %}  
+</main>
 {% block footer %}
   {% include 'footer.html' %}
 {% endblock footer %}
+</div>
 </body>
 </html>

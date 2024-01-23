@@ -1,15 +1,25 @@
+
 {% extends "base.html" %}
 
 {% block title %}
-Movimenti
-{% endblock title %}
+Movimenti - ContaPapagne
+{% endblock %}
 
-{% block content %}   
+{% block content %}
+
+<!-- Main Content -->
+<div class="container mx-auto my-8">
+    <!-- Page Heading -->
+    <div class="text-center mb-8">
+        <h2 class="text-3xl font-bold">Movimenti ContaPapagne</h2>
+        <p class="text-xl">Gestisci le tue transazioni finanziarie.</p>
+    </div>
+  
     <!-- Form Section -->
-    <div class="container mx-auto my-8 p-8">
-        <div class="w-full max-w-lg mx-auto">
-            <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-                <h2 class="text-xl font-bold mb-4">Registra Movimento</h2>
+    <div class="flex flex-col lg:flex-row gap-4 mb-8">
+        <div class="bg-white rounded shadow-lg p-6 flex-1">
+            <h3 class="text-xl font-bold mb-4">Registra Movimento</h3>
+            <form class="bg-white rounded px-8 pt-6 pb-8 mb-4">
                 <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="data_movimento">
                         Data
@@ -29,11 +39,26 @@ Movimenti
                     <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="descrizione_movimento" placeholder="Descrizione"></textarea>
                 </div>
                 <div class="flex items-center justify-between">
-                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+                    <button class="button-fill-effect font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
                         Registra
                     </button>
                 </div>
             </form>
         </div>
+        
+        <!-- Placeholder per grafici o andamenti -->
+        <div class="bg-white rounded shadow-lg p-6 flex-1">
+            <h3 class="text-xl font-bold mb-4">Andamento Movimenti</h3>
+            <div class="h-40 bg-gray-200 rounded flex items-center justify-center">
+                <!-- Graph -->
+            </div>
+        </div>
     </div>
-{% endblock content %}
+  
+    <!-- Movimenti Table Section -->
+    <div class="bg-white rounded shadow-lg p-6">
+        <h3 class="text-xl font-bold mb-4">Dettaglio Movimenti</h3>
+        <!-- qui andrá tabella dinamica -->
+    </div>
+</div>
+{% endblock %}
