@@ -3,6 +3,7 @@ from blueprints.movimenti import mov
 from blueprints.investimenti import inv
 from blueprints.budgets import bud
 from blueprints.settings import set
+
 app = Flask(__name__)
 app.register_blueprint(mov)
 app.register_blueprint(inv)
