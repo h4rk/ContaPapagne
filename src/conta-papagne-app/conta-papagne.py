@@ -4,6 +4,8 @@ from controllers.investimenti import inv
 from controllers.budgets import bud
 from controllers.settings import set
 from models.dbconfig import db
+from models.movimento_uscita import MovimentoUscita
+from models.movimento_entrata import MovimentoEntrata
 
 #Create app
 app = Flask(__name__)
@@ -11,6 +13,8 @@ app = Flask(__name__)
 #Setup DB
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///project.db"
 db.init_app(app)
+with app.app_context():
+    db.create_all()
 
 #Register blueprints
 app.register_blueprint(mov)
