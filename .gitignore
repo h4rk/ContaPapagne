@@ -1,8 +1,9 @@
 ### Custom ###
 ContaPapagneVenv/
 
+#Drawio
 
-
+documentation/ER-diagram/.*.bkp
 
 ### Flask ###
 instance/
@@ -32,3 +33,4 @@ venv.bak/
 *.vsix
 .history
 .ionide
+documentation/ER-diagram/.$modello-em.drawio.bkp
