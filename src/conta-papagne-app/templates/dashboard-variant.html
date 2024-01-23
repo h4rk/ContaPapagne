@@ -8,50 +8,7 @@ Dashboard - ContaPapagne
 {% endblock %}
 
 {% block content %}
-
-{% block style %}
-    <style>
-      .button-fill-effect {
-          position: relative;
-          background-color: #388d85; 
-          border: none;
-          color: #bbf3ed; 
-          padding: 10px 20px;
-          font-size: 16px;
-          cursor: pointer;
-          transition: color 0.5s;
-          border-radius: 4px;
-          overflow: hidden;
-          z-index: 0;
-      }
-      
-      .button-fill-effect::after {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 0;
-          height: 100%;
-          background-color: #ec9154; 
-          transition: width 0.5s;
-          border-radius: 4px;
-          z-index: -1;
-      }
-      
-      .button-fill-effect:hover::after {
-          width: 100%;
-      }
-      
-      .button-fill-effect span {
-          position: relative;
-          z-index: 1;
-      }
-      
-      .button-fill-effect:hover {
-          color: #fce2d1; /* Ensuring text color contrasts well with #FFA17A */
-      }
-    </style>
-{% endblock style %}   
+ 
 
   
   
