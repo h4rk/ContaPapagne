@@ -4,4 +4,4 @@ mov = Blueprint('movimenti', __name__, url_prefix='/movimenti')
 
 @mov.route('/', methods=['GET'])
 def dashboard():
-	return render_template('mov/movimenti-htmx.html')
+	return render_template('mov/movimenti.html')

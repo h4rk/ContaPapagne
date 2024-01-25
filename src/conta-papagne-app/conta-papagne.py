@@ -29,4 +29,4 @@ app.register_blueprint(set)
 
 @app.route("/")
 def home():
-    return render_template("dashboard-variant.html")
+    return render_template("index.html")
