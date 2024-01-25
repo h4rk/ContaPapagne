@@ -3,7 +3,8 @@ ContaPapagneVenv/
 
 #Drawio
 
-documentation/ER-diagram/.*.bkp
+documentation/*/*.bkp
+documentation/*/*.dtmp
 
 ### Flask ###
 instance/
