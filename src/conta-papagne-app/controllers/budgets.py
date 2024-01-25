@@ -4,4 +4,4 @@ bud = Blueprint('budgets', __name__, url_prefix='/budgets')
 
 @bud.route('/', methods=['GET'])
 def dashboard():
-	return render_template('budgets.html')
+	return render_template('bud/budgets.html')
