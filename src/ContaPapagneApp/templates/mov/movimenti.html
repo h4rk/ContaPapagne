@@ -10,7 +10,7 @@
     <div class="flex flex-col lg:flex-row gap-4 mb-8">
         <div class="bg-white rounded shadow-lg p-6 flex-1">
             <h3 class="text-xl font-bold mb-4">Registra Movimento</h3>
-            <form class="bg-white rounded px-8 pt-6 pb-8 mb-4">
+            <form class="bg-white rounded px-8 pt-6 pb-8 mb-4" hx-post="{{url_for('movimenti.createMovimento')}}" hx-target="#target-conferma" hx-trigger="click from:#submitbtn">
                 <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="data_movimento">
                         Data
@@ -30,11 +30,12 @@
                     <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="descrizione_movimento" placeholder="Descrizione"></textarea>
                 </div>
                 <div class="flex items-center justify-between">
-                    <button class="button-fill-effect font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+                    <button id="submitbtn"class="button-fill-effect font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
                         Registra
                     </button>
                 </div>
             </form>
+			<div id="target-conferma"></div>
         </div>
         
         <!-- Placeholder per grafici o andamenti -->
