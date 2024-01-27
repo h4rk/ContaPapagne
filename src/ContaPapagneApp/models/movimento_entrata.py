@@ -21,16 +21,16 @@ class MovimentoEntrata(db.Model):
 			self.id_entrata = id_entrata
 
 	@classmethod
-	def build_from_dict(self, dict):
+	def build_from_dict(cls, dict):
 		try:
 			if dict.id_entrata is not None:
-				self.id_entrata = dict.id_entrata
-			self.data = dict.data
-			self.importo = dict.importo
-			self.descrizione = dict.descrizione
-			self.risarcimento = dict.risarcimento
+				cls.id_entrata = dict.id_entrata
+			cls.data = dict.data
+			cls.importo = dict.importo
+			cls.descrizione = dict.descrizione
+			cls.risarcimento = dict.risarcimento
 
-			return self
+			return cls
 		except Exception as e:
 			print("Impossibile generare l'oggetto a causa della seguente eccezione:")
 			print(e)
