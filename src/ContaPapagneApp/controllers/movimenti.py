@@ -8,5 +8,5 @@ def dashboard():
 
 @mov.route('/createMovimento', methods=['POST'])
 def createMovimento():
-	print(request.get_data())
+	print('Request for createMovimenti(): ' + str(request.get_data()))
 	return render_template('common/insert-ok.html')
