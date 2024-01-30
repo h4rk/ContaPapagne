@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request
 from models.movimento_entrata import MovimentoEntrata
 from models.dbconfig import db
+import time
 
 mov = Blueprint('movimenti', __name__, url_prefix='/movimenti')
 
@@ -16,6 +17,7 @@ def dettaglioMovimento():
 
 @mov.route('/listaMovimenti', methods=['GET'])
 def listaMovimenti():
+	time.sleep(2)
 	movimenti = MovimentoEntrata.query.all()
 	print(movimenti)
 	return render_template('mov/lista-movimenti-short.html', movimenti=movimenti)
