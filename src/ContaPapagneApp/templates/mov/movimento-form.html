@@ -1,0 +1,31 @@
+<form id="movimento-form" class="bg-white rounded px-8 pt-6 pb-8 mb-4" hx-post="{{url_for('movimenti.createMovimento')}}" hx-swap="none" hx-trigger="click from:#submitbtn">
+	<div class="mb-4">
+		<label class="block text-gray-700 text-sm font-bold mb-2" for="data_movimento">
+			Data
+		</label>
+		<input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="data_movimento" name="data_movimento" type="date" placeholder="Data Movimento">
+	</div>
+	<div class="mb-4">
+		<label class="block text-gray-700 text-sm font-bold mb-2" for="importo_movimento">
+			Importo
+		</label>
+		<input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="importo_movimento" name="importo_movimento" type="number" placeholder="Importo">
+	</div>
+	<div class="mb-4">
+		<label class="block text-gray-700 text-sm font-bold mb-2" for="descrizione_movimento">
+			Descrizione
+		</label>
+		<textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="descrizione_movimento" name="descrizione_movimento" placeholder="Descrizione"></textarea>
+	</div>
+	<div class="mb-4">
+		<label class="block text-gray-700 text-sm font-bold mb-2" for="risarcimento_movimento">
+			Importo
+		</label>
+		<input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="risarcimento_movimento" name="risarcimento_movimento" type="text" placeholder="rirarcimento">
+	</div>
+	<div class="flex items-center justify-between">
+		<button id="submitbtn"class="button-fill-effect font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+			Registra
+		</button>
+	</div>
+</form>
