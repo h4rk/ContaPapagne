@@ -15,6 +15,11 @@ def dashboard():
 def dettaglioMovimento():
 	return render_template('mov/dettaglio-movimento.html')
 
+#TODO
+@mov.route('/putMovimento', methods=['PUT'])
+def putMovimento():
+	return render_template('mov/dettaglio-movimento.html')
+
 @mov.route('/listaMovimenti', methods=['GET'])
 def listaMovimenti():
 	time.sleep(2)
@@ -41,6 +46,7 @@ def createMovimento():
 	
 	return render_template('mov/dashboard-movimenti.html')
 
-@mov.route('/deleteMovimento', methods=['POST'])
+#TODO: aggiungere parametro id da cancellare, cancellazione
+@mov.route('/deleteMovimento', methods=['DELETE'])
 def deleteMovimento():
-	return render_template('common/insert-ok.html')
+	return render_template('mov/lista-movimenti.html')
