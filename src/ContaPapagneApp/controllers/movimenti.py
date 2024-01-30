@@ -32,14 +32,12 @@ def createMovimento():
 	except Exception as e:
 		return 'Errore scrittura DB' + str(e)
 	
-	# movimento = MovimentoEntrata.build_from_dict()
-
-	# if not fieldsValid():
-	#     return render_template('mov/movimento/form.html', campi errore)
-	# else:
-	#     return render_template('mov/movimento/form.html', banner OK)
+	# TODO: validazione campi
+	#	
+	# TODO: if insert OK return form con messaggio di OK
+	#       else: return form con errore
 	
-	return render_template('common/insert-ok.html')
+	return render_template('mov/dashboard-movimenti.html')
 
 @mov.route('/deleteMovimento', methods=['POST'])
 def deleteMovimento():

@@ -34,7 +34,7 @@ class MovimentoEntrata(db.Model):
 			return MovimentoEntrata(data=data, importo=importo, id_entrata=id_entrata, descrizione=descrizione, risarcimento=risarcimento)
 			
 		except Exception as e:
-			print("Impossibile generare l'oggetto a causa della seguente eccezione:")
+			print("Impossibile generare l'oggetto a causa della seguente eccezione:\n")
 			print(e)
 	
 	def __str__(self):
