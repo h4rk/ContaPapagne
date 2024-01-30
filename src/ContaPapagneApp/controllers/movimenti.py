@@ -1,4 +1,6 @@
 from flask import Blueprint, render_template, request
+from models.movimento_entrata import MovimentoEntrata
+from models.dbconfig import db
 
 mov = Blueprint('movimenti', __name__, url_prefix='/movimenti')
 
@@ -14,13 +16,29 @@ def dettaglioMovimento():
 
 @mov.route('/listaMovimenti', methods=['GET'])
 def listaMovimenti():
-	return render_template('mov/lista-movimenti.html')
+	movimenti = MovimentoEntrata.query.all()
+	print(movimenti)
+	return render_template('mov/lista-movimenti-short.html', movimenti=movimenti)
 
 # Sezione API REST
 
 @mov.route('/createMovimento', methods=['POST'])
 def createMovimento():
-	print('Request for createMovimenti(): ' + str(request.get_data()))
+	print('Request for createMovimenti(): ' + str(request.form))
+	mov = MovimentoEntrata.build_from_dict(request.form)
+	try:
+		db.session.add(mov)
+		db.session.commit()
+	except Exception as e:
+		return 'Errore scrittura DB' + str(e)
+	
+	# movimento = MovimentoEntrata.build_from_dict()
+
+	# if not fieldsValid():
+	#     return render_template('mov/movimento/form.html', campi errore)
+	# else:
+	#     return render_template('mov/movimento/form.html', banner OK)
+	
 	return render_template('common/insert-ok.html')
 
 @mov.route('/deleteMovimento', methods=['POST'])

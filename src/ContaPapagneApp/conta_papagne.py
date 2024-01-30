@@ -14,8 +14,8 @@ app = Flask(__name__)
 #Setup DB
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///project.db"
 db.init_app(app)
-# with app.app_context():
-#     db.create_all()
+with app.app_context():
+    db.create_all()
 #     db.session.add(MovimentoEntrata(data=datetime.date(2024, 1, 23), importo=123.45, descrizione=None, risarcimento=None))
 #     db.session.commit()
 #     for q in db.session.execute(db.select(MovimentoEntrata)):

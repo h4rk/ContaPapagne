@@ -1,0 +1,15 @@
+<table>
+	<th>
+		<td>Data movimento</td>
+		<td>Importo</td>
+		<td>Descrizione</td>
+	</th>
+	{% for item in movimenti %}
+	<tr>
+		<td>{{item.data}}</td>
+		<td>{{item.importo}}</td>
+		<td>{{item.descrizione}}</td>
+	</tr>
+	{% endfor %}
+
+</table>

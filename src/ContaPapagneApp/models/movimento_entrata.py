@@ -1,3 +1,4 @@
+from datetime import date
 from sqlalchemy import Integer, String, Date, Double, ForeignKey
 from sqlalchemy.orm import mapped_column
 from models.dbconfig import db
@@ -20,17 +21,18 @@ class MovimentoEntrata(db.Model):
 		if id_entrata is not None:
 			self.id_entrata = id_entrata
 
-	@classmethod
-	def build_from_dict(cls, dict):
+	@staticmethod
+	def build_from_dict(dict):
 		try:
-			if dict.id_entrata is not None:
-				cls.id_entrata = dict.id_entrata
-			cls.data = dict.data
-			cls.importo = dict.importo
-			cls.descrizione = dict.descrizione
-			cls.risarcimento = dict.risarcimento
+			id_entrata = dict.get('id_entrata', default=None)
+			data = date.fromisoformat(dict.get('data_movimento'))
+			importo = dict.get('importo_movimento')
+			descrizione = dict.get('descrizione_movimento')
+			risarcimento = dict.get('risarcimento')
+			print('(id='+ str(id_entrata) +', importo= '+ str(importo) +', data='+str(data)+')')
 
-			return cls
+			return MovimentoEntrata(data=data, importo=importo, id_entrata=id_entrata, descrizione=descrizione, risarcimento=risarcimento)
+			
 		except Exception as e:
 			print("Impossibile generare l'oggetto a causa della seguente eccezione:")
 			print(e)
