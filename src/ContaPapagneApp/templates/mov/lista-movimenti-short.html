@@ -1,7 +1,7 @@
 <style>
 	.grid-header {
 			display: grid;
-			grid-template-columns: 1fr 1fr 1fr 1fr 4fr;
+			grid-template-columns: 1fr 1fr 2fr 1fr 3fr;
 			background-color: #f2f2f2;
 	}
 
@@ -20,7 +20,7 @@
 	}
 	.grid-content {
 			display: grid;
-			grid-template-columns: 1fr 1fr 1fr 1fr 4fr;
+			grid-template-columns: 1fr 1fr 2fr 1fr 3fr;
 			gap: 5px;
 			padding: 5px;
 			background-color: #f2f2f2;
@@ -28,15 +28,21 @@
 			overflow-y: auto;
 			max-height: 200px;
 	}
+	.categoria {
+		background-color: #134e4a;
+		padding: 3px;
+		border-radius: 5px;
+		color: #f2f2f2;
+	}
 </style>
 
 
 <div class="grid-table">
 	<div class="grid-header">
-			<div class="grid-header-cell">Data movimento</div>
+			<div class="grid-header-cell">Data</div>
 			<div class="grid-header-cell">Importo</div>
 			<div class="grid-header-cell">Categoria</div>
-			<div class="grid-header-cell">Risarcimento?</div>
+			<div class="grid-header-cell">Risarcito</div>
 			<div class="grid-header-cell">Descrizione</div>
 	</div>
 
@@ -45,7 +51,7 @@
 			{% for item in movimenti %}
 			<div class="grid-row">{{ item.data }}</div>
 			<div class="grid-row">{{ item.importo }}</div>
-			<div class="grid-row">categoria riga</div>
+			<div class="grid-row flex gap-x-1"><span class="categoria">spesina</span><span class="categoria">spesina</span><span class="categoria">spesina</span></div>
 			<div class="grid-row">SI</div>
 			<div class="grid-row">{{ item.descrizione }}</div>
 			{% endfor %}
