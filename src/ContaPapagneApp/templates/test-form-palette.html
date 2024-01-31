@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Finance Forms</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #F7F7F7;
+        
+        padding: 20px;
+    }
+    .forms-container {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        gap: 20px;
+        width: 30%;
+    }
+    .form-container {
+        background-color: #FFFFFF;
+        padding: 20px;
+        border-radius: 8px;
+        
+        flex: 1;
+    }
+    .income-form {
+        border-left: 6px solid #2F4F4F; 
+        border-bottom: 6px solid #2F4F4F;
+        color: #123e3e;
+    }
+    .expenses-form {
+        border-left: 6px solid #D25A0F;
+        border-bottom: 6px solid #D25A0F;
+        color: #6f2f07;
+    }
+    label {
+        display: block;
+        margin-bottom: 10px;
+    }
+    input[type="text"], input[type="number"], select {
+        width: 90%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #CCC;
+        border-radius: 4px;
+    }
+    .submit-btn {
+
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    .income-btn {
+        background-color: #2F4F4F;
+    }
+    .expenses-btn {
+        background-color: #D25A0F;
+        color: #fff;
+    }
+    .submit-btn:hover {
+        opacity: 0.9;
+    }
+    .switch-field {
+        display: flex;
+        margin-bottom: 20px;
+        overflow: hidden;
+        font-size: 0;
+        border-radius: 4px;
+    }
+
+    .switch-field input {
+        display: none;
+    }
+
+    .switch-field label {
+        font-size: 16px;
+        line-height: 1;
+        padding: 8px 16px;
+        margin: 0;
+        text-align: center;
+        color: #fff;
+        border: 1px solid transparent;
+        transition: all 0.2s ease-in-out;
+    }
+
+    .switch-field label:hover {
+        cursor: pointer;
+    }
+
+    .switch-field input:checked + label {
+        background-color: #D25A0F;
+        color: #fff;
+        border-color: #D25A0F;
+    }
+
+    .switch-field label.income-label {
+        background-color: #2F4F4F;
+        border-radius: 4px 0 0 4px;
+    }
+
+    .switch-field label.expense-label {
+        background-color: #D25A0F;
+        border-radius: 0 4px 4px 0;
+    }
+    .toggle-switch {
+        position: relative;
+        width: 60px;
+        -webkit-user-select: none;
+        user-select: none;
+    }
+    .toggle-switch-checkbox {
+        display: none;
+    }
+    .toggle-switch-label {
+        display: block;
+        overflow: hidden;
+        cursor: pointer;
+        border: 2px solid #999999;
+        border-radius: 20px;
+    }
+    .toggle-switch-inner {
+        display: block;
+        width: 200%;
+        margin-left: -100%;
+        transition: margin 0.3s ease-in 0s;
+        
+        &:before,
+        &:after {
+            display: block;
+            float: left;
+            width: 50%;
+            height: 24px;
+            padding: 0;
+            line-height: 24px;
+            font-size: 12px;
+            color: white;
+            font-weight: bold;
+            box-sizing: border-box;
+        }
+        
+        &:before {
+            content: "Income";
+            padding-left: 20px;
+            background-color: #2F4F4F;
+            color: #FFFFFF;
+        }
+        
+        &:after {
+            content: "Expense";
+            padding-right: 20px;
+            background-color: #D25A0F;
+            color: #FFFFFF;
+            text-align: right;
+        }
+    }
+    .toggle-switch-switch {
+        display: block;
+        width: 18px;
+        margin: 3px;
+        background: #FFFFFF;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 36px;
+        border: 2px solid #999999;
+        border-radius: 20px;
+        transition: all 0.3s ease-in 0s;
+    }
+    .toggle-switch-checkbox:checked + .toggle-switch-label .toggle-switch-inner {
+        margin-left: 0;
+    }
+    .toggle-switch-checkbox:checked + .toggle-switch-label .toggle-switch-switch {
+        right: 0px;
+    }
+</style>
+</head>
+<body>
+
+<div class="forms-container">
+    <h2 id="form-title">Income Form</h2>
+    
+    <!-- Toggle Switch -->
+    <div class="toggle-switch">
+        <input type="checkbox" id="toggle-switch" class="toggle-switch-checkbox" 
+               name="toggle-switch" checked>
+        <label class="toggle-switch-label" for="toggle-switch">
+            <span class="toggle-switch-inner"></span>
+            <span class="toggle-switch-switch"></span>
+        </label>
+    </div>
+
+    <!-- Unified Form -->
+    <div class="form-container income-form" id="form-container">
+        <form id="finance-form">
+            <label for="source-category">Source/Category</label>
+            <input type="text" id="source-category" name="source-category">
+            
+            <label for="amount">Amount</label>
+            <input type="number" id="amount" name="amount">
+            
+            <button type="submit" id="submit-btn" class="submit-btn income-btn">Add Income</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    document.getElementById('toggle-switch').addEventListener('change', function() {
+        var formContainer = document.getElementById('form-container');
+        var formTitle = document.getElementById('form-title');
+        var submitBtn = document.getElementById('submit-btn');
+
+        if(this.checked) {
+            formContainer.className = 'form-container income-form';
+            formTitle.innerText = 'Income Form';
+            submitBtn.className = 'submit-btn income-btn';
+            submitBtn.innerText = 'Add Income';
+        } else {
+            formContainer.className = 'form-container expenses-form';
+            formTitle.innerText = 'Expenses Form';
+            submitBtn.className = 'submit-btn expenses-btn';
+            submitBtn.innerText = 'Add Expense';
+        }
+    });
+</script>
+
+</body>
+</html>
