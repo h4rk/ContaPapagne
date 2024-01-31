@@ -20,10 +20,10 @@ def dettaglioMovimento():
 def putMovimento():
 	return render_template('mov/dettaglio-movimento.html')
 
-@mov.route('/listaMovimenti', methods=['GET'])
-def listaMovimenti():
+@mov.route('/listaBreveMovimenti', methods=['GET'])
+def listaBreveMovimenti():
 	time.sleep(2)
-	movimenti = MovimentoEntrata.query.all()
+	movimenti = db.session.execute(db.select(MovimentoEntrata).order_by(MovimentoEntrata.data)).fetchmany(5)
 	print(movimenti)
 	return render_template('mov/lista-movimenti-short.html', movimenti=movimenti)
 
