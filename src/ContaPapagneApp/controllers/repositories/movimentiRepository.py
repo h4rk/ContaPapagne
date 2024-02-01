@@ -19,10 +19,18 @@ def findUscitaById(id: int):
     return db.session.execute(sql, {'id':id}).fetchone()
 
 def createEntrata(movEntrata) -> bool:
-	try:
-		db.session.add(movEntrata)
-		db.session.commit()
-		return True
-	except Exception as e:
-		print('Errore scrittura DB' + str(e))
-		return False
+    try:
+        db.session.add(movEntrata)
+        db.session.commit()
+        return True
+    except Exception as e:
+        print('Errore scrittura DB' + str(e))
+        return False
+
+def listMovimenti():
+    try:
+        sql = text(""" SELECT * FROM (SELECT mu.data, mu.importo, mu.descrizione FROM movimento_uscita mu UNION ALL SELECT me.data, me.importo, me.descrizione FROM movimento_entrata me) dum ORDER BY data DESC LIMIT 50""")
+        return db.session.execute(sql).fetchall()
+    except Exception as e:
+        print("Errore query listMovimenti")
+        print(e)
