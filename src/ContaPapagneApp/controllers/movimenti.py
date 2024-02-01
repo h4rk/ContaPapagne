@@ -19,7 +19,8 @@ def dettaglioMovimento():
 @mov.route('/listaMovimenti', methods=['GET'])
 def listaMovimenti():
 	time.sleep(2)
-	movimenti = db.session.execute(db.select(MovimentoEntrata).order_by(MovimentoEntrata.data)).fetchmany(50)
+	movimenti = movRepo.listMovimenti()
+	print(movimenti)
 	return render_template('mov/lista-movimenti.html', movimenti=movimenti)
 
 
