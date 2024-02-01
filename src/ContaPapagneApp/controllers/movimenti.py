@@ -16,13 +16,11 @@ def dashboard():
 def dettaglioMovimento():
 	return render_template('mov/dettaglio-movimento.html')
 
-@DeprecationWarning
-@mov.route('/listaBreveMovimenti', methods=['GET'])
-def listaBreveMovimenti():
+@mov.route('/listaMovimenti', methods=['GET'])
+def listaMovimenti():
 	time.sleep(2)
-	movimenti = db.session.execute(db.select(MovimentoEntrata).order_by(MovimentoEntrata.data)).fetchmany(5)
-	print(movimenti)
-	return render_template('mov/lista-movimenti-short.html', movimenti=movimenti)
+	movimenti = db.session.execute(db.select(MovimentoEntrata).order_by(MovimentoEntrata.data)).fetchmany(50)
+	return render_template('mov/lista-movimenti.html', movimenti=movimenti)
 
 
 @mov.route('/createMovimento', methods=['POST'])
