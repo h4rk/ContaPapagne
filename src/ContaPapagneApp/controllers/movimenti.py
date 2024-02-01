@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request
 from models.movimento_entrata import MovimentoEntrata
 from models.dbconfig import db
-from repositories import movimentiRepository as movRepo
+from .repositories import movimentiRepository as movRepo
 import time
 
 mov = Blueprint('movimenti', __name__, url_prefix='/movimenti')
