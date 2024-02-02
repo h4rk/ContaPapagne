@@ -7,8 +7,13 @@ class Categoria(db.Model):
 	
 	id_categoria = mapped_column(Integer, primary_key=True, autoincrement=True)
 	nome = mapped_column(String)
-	tipologia = mapped_column(Integer,)
+	tipologia = mapped_column(Integer)
 	descrizione = mapped_column(String, nullable=True)
+
+	def __init__(self, nome, tipologia, descrizione):
+		self.nome = nome
+		self.tipologia = tipologia
+		self.descrizione = descrizione
 
 	#Validatore automatico per il campo tipologia, che rappresenta la tipologia di categoria, ovvero:
 	# 0 = categoria per soli movimenti in entrata
@@ -22,7 +27,7 @@ class Categoria(db.Model):
 			return tipologia
 
 	def __str__(self):
-		return 'Categoria(id='+ str(self.id_categoria) +', nome= '+ str(self.nome) +', tipologia='+str(self.tipologia)+')'
+		return 'Categoria(id='+ str(self.id_categoria) +', nome= '+ str(self.nome) +', tipologia='+str(self.tipologia)+', descrizione='+str(self.descrizione)+' )'
 
 	def __repr__(self):
-		return 'Categoria(id='+ str(self.id_categoria) +', nome= '+ str(self.nome) +', tipologia='+str(self.tipologia)+')'
+		return 'Categoria(id='+ str(self.id_categoria) +', nome= '+ str(self.nome) +', tipologia='+str(self.tipologia)+', descrizione='+str(self.descrizione)+' )'

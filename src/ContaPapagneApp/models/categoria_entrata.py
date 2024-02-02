@@ -1,5 +1,5 @@
 from sqlalchemy import ForeignKey, UniqueConstraint, PrimaryKeyConstraint
-from sqlalchemy.orm import mapped_column, validates
+from sqlalchemy.orm import mapped_column
 from models.dbconfig import db
 
 class CategoriaEntrata(db.Model):
