@@ -1,1 +1,33 @@
-<p>SETTINGS</p>
+<div>
+	<form id="categoria-form" class="bg-white rounded px-8 pt-6 pb-8 mb-4" hx-post="{{url_for('settings.createCategoria')}}" hx-swap="none">
+		<div class="mb-4">
+			<label class="block text-gray-700 text-sm font-bold mb-2" for="nome_categoria">
+				Nome
+			</label>
+			<input id="nome_categoria" name="nome_categoria" type="text" placeholder="Nome" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+		</div>
+		<div class="mb-4">
+			<label class="block text-gray-700 text-sm font-bold mb-2" for="tipologia_categoria">
+				Tipologia
+			</label>
+			<select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="tipologia_categoria" name="tipologia_categoria">
+				<option id="0" value="0" >Solo entrate</option>
+				<option id="1" value="1" >Solo Uscite</option>
+				<option id="2" value="2" >Entrambe</option>
+			</select>
+		</div>
+		<div class="mb-4">
+			<label class="block text-gray-700 text-sm font-bold mb-2" for="descrizione_categoria">
+				Descrizione
+			</label>
+			<textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="descrizione_categoria" name="descrizione_categoria" placeholder="Descrizione categoria"></textarea>
+		</div>
+			<button class="button-fill-effect font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+				Crea Categoria
+			</button>
+		</div>
+	</form>
+	<div hx-get="{{url_for('settings.listCategorie')}}" hx-trigger="load" hx-swap="outerHTML" hx-indicator="#spinner-id" class="bg-white rounded shadow-lg p-6 text-xl font-bold mb-4">
+        <img id="spinner-id" src="../../static/img/spinning-circles.svg" alt="Loading..." class="htmx-indicator">
+    </div>
+</div>
