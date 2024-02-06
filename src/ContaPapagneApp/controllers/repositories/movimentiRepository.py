@@ -2,7 +2,7 @@ from models.dbconfig import db
 from models.movimento_entrata import MovimentoEntrata
 from models.movimento_uscita import MovimentoUscita
 from sqlalchemy.sql import text
-import datetime
+from flask import current_app as app
 
 def findEntrataById(id: int):
     sql = text("SELECT * FROM movimento_entrata me WHERE me.id_entrata = :id")
@@ -12,14 +12,14 @@ def findUscitaById(id: int):
     sql = text("SELECT * FROM movimento_uscita mu WHERE mu.id_uscita = :id")
     return db.session.execute(sql, {'id':id}).fetchone()
 
-def createEntrata(movEntrata) -> bool:
+def createEntrata(movEntrata) -> int:
     try:
         db.session.add(movEntrata)
         db.session.commit()
-        return True
+        return movEntrata.id_entrata
     except Exception as e:
-        print('Errore scrittura DB' + str(e))
-        return False
+        app.logger.error('Errore scrittura DB\n' + str(e))
+        return -1
 
 def listMovimenti():
     try:

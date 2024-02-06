@@ -32,7 +32,8 @@ def createMovimento():
 	# TODO: validazione campi
 	
 	esito = movRepo.createEntrata(mov)
-	if esito:
+	if esito<0:
+		# TODO errore
 		return render_template('mov/dashboard-movimenti.html')
 	else:
 		return render_template('mov/dashboard-movimenti.html')
