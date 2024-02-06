@@ -14,19 +14,18 @@ app = Flask(__name__)
 #Setup DB
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///project.db"
 db.init_app(app)
-with app.app_context():
-    db.create_all()
-    db.session.add(MovimentoEntrata(data=datetime.date(2024, 1, 23), importo=123.45, descrizione=None, risarcimento=None))
-    db.session.add(MovimentoUscita(data=datetime.date(2024, 1, 23), importo=543.21, descrizione=None))
-    db.session.commit()
-#     for q in db.session.execute(db.select(MovimentoEntrata)):
-#         print(q)
 
 #Register blueprints
 app.register_blueprint(mov)
 app.register_blueprint(inv)
 app.register_blueprint(bud)
 app.register_blueprint(set)
+
+with app.app_context():
+    db.create_all()
+    db.session.add(MovimentoEntrata(data=datetime.date(2024, 1, 23), importo=123.45, descrizione=None, risarcimento=None))
+    db.session.add(MovimentoUscita(data=datetime.date(2024, 1, 23), importo=543.21, descrizione=None))
+    db.session.commit()
 
 @app.route("/")
 def home():
