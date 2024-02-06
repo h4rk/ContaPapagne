@@ -1,7 +1,7 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, current_app as app
 from models.movimento_entrata import MovimentoEntrata
 from models.dbconfig import db
-from .repositories import movimentiRepository as movRepo
+from .repositories import movimentiRepository as movRepo, categorieRepository as catRepo
 import time
 
 mov = Blueprint('movimenti', __name__, url_prefix='/movimenti')
@@ -46,3 +46,12 @@ def deleteMovimento():
 @mov.route('/putMovimento', methods=['PUT'])
 def putMovimento():
 	return render_template('mov/dettaglio-movimento.html')
+
+@mov.route('/fetchCategorie', methods=['GET'])
+def fetchCategorie():
+	if (request.args.get('categoria_movimento') != ''):
+		categorie = catRepo.findCategoriaWithNomeLike(request.args.get('categoria_movimento'))
+	else:
+		categorie = []
+	app.logger.debug(categorie)
+	return render_template('mov/list-categorie.html', categorie=categorie)
