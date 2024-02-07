@@ -11,3 +11,7 @@ class CategoriaEntrata(db.Model):
 		UniqueConstraint('id_categoria', 'id_entrata', name='id_cat_id_ent_unique'),
 		PrimaryKeyConstraint('id_categoria', 'id_entrata', name='categoria_entrata_pk')
 		)
+	
+	def __init__(self, id_categoria, id_entrata) -> None:
+		self.id_categoria = id_categoria
+		self.id_entrata = id_entrata

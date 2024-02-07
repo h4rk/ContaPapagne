@@ -1,7 +1,8 @@
 from flask import Blueprint, render_template, request, current_app as app
+from models.categoria_entrata import CategoriaEntrata
 from models.movimento_entrata import MovimentoEntrata
 from models.dbconfig import db
-from .repositories import movimentiRepository as movRepo, categorieRepository as catRepo
+from .repositories import movimentiRepository as movRepo, categorieRepository as catRepo, categoriaMovimentoRepository as catMovRepo
 import time
 
 mov = Blueprint('movimenti', __name__, url_prefix='/movimenti')
@@ -18,23 +19,18 @@ def dettaglioMovimento():
 
 @mov.route('/listaMovimenti', methods=['GET'])
 def listaMovimenti():
-	time.sleep(2)
 	movimenti = movRepo.listMovimenti()
-	print(movimenti)
 	return render_template('mov/lista-movimenti.html', movimenti=movimenti)
 
 
 @mov.route('/createMovimento', methods=['POST'])
 def createMovimento():
-	print('Request for createMovimenti(): ' + str(request.form))
 	mov = MovimentoEntrata.build_from_dict(request.form)
-	
-	# TODO: validazione campi
-	
-	esito = movRepo.createEntrata(mov)
-	if esito:
+	# TODO: validazione campi ? 
+	try:
+		createMovEntrataHelper(mov, request.form.get('id_categoria'))
 		return render_template('mov/dashboard-movimenti.html')
-	else:
+	except Exception as e:
 		return render_template('mov/dashboard-movimenti.html')
 
 #TODO: aggiungere parametro id da cancellare, cancellazione
@@ -55,3 +51,11 @@ def fetchCategorie():
 		categorie = []
 	app.logger.debug(categorie)
 	return render_template('mov/list-categorie.html', categorie=categorie)
+
+def createMovEntrataHelper(movimentoEntrata, id_categoria):
+		movEnt = movRepo.createEntrata(movimentoEntrata)
+		catMovEnt = CategoriaEntrata(id_categoria, movEnt.id_entrata)
+		catMovRepo.createCategoriaEntrata(catMovEnt)
+
+def listMovimentiHelper():
+	movRepo.listMovimenti()

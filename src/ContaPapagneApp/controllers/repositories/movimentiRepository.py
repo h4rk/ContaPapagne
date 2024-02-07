@@ -1,4 +1,4 @@
-from models.dbconfig import db
+from models.dbconfig import db, DBException
 from models.movimento_entrata import MovimentoEntrata
 from models.movimento_uscita import MovimentoUscita
 from sqlalchemy.sql import text
@@ -12,15 +12,10 @@ def findUscitaById(id: int):
     sql = text("SELECT * FROM movimento_uscita mu WHERE mu.id_uscita = :id")
     return db.session.execute(sql, {'id':id}).fetchone()
 
-def createEntrata(movEntrata) -> bool:
-    try:
-        db.session.add(movEntrata)
-        db.session.commit()
-        return True
-    except Exception as e:
-        print('Errore scrittura DB' + str(e))
-        return False
-
+def createEntrata(movEntrata) -> MovimentoEntrata:
+    db.session.add(movEntrata)
+    return movEntrata
+    
 def listMovimenti():
     try:
         sql = text(""" SELECT * FROM (SELECT mu.data, mu.importo, mu.descrizione FROM movimento_uscita mu UNION ALL SELECT me.data, me.importo, me.descrizione FROM movimento_entrata me) dum ORDER BY data DESC LIMIT 50""")
