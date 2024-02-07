@@ -2,7 +2,7 @@ from models.dbconfig import db, DBException
 from models.movimento_entrata import MovimentoEntrata
 from models.movimento_uscita import MovimentoUscita
 from sqlalchemy.sql import text
-import datetime
+from flask import current_app as app
 
 def findEntrataById(id: int):
     sql = text("SELECT * FROM movimento_entrata me WHERE me.id_entrata = :id")
