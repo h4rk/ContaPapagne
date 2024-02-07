@@ -1,4 +1,5 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
+from sqlalchemy import text
 from controllers.movimenti import mov
 from controllers.investimenti import inv
 from controllers.budgets import bud
@@ -30,3 +31,12 @@ with app.app_context():
 @app.route("/")
 def home():
     return render_template("index.html")
+
+@app.route("/sqlConsole", methods=['GET'])
+def sqlConsoleIdx():
+    return render_template("temp-sql.html")
+
+@app.route("/sqlConsole", methods=['POST'])
+def sqlConsole():
+    output = db.session.execute(text(request.form.get('sql'))).all()
+    return render_template("temp-sql-out.html", output=output)

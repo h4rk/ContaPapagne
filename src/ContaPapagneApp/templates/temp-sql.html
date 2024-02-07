@@ -1,0 +1,14 @@
+<html lang="it">
+  <head>
+	<script src="https://unpkg.com/htmx.org@1.9.9"></script>
+  </head>
+  <body>
+    <main>
+		<form hx-post="{{url_for('sqlConsole')}}" hx-target="#result" hx-swap="innerHTML">
+			<input type="text" name="sql" id="sql" style="height: 300px; width: 500px;">
+			<button type="submit">RUN</button>
+		</form>
+		<div id="result"></div>
+    </main>
+  </body>
+</html>
