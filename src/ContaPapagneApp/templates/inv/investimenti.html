@@ -1,31 +1,25 @@
-    <!-- Form Section -->
-    <div class="container mx-auto my-8 p-8">
-        <div class="w-full max-w-xs mx-auto">
-            <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-                <h2 class="text-xl font-bold mb-4">Aggiungi Investimento</h2>
-                <div class="mb-4">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="data_inizio">
-                        Data Inizio
-                    </label>
-                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="data_inizio" type="date" placeholder="Data Inizio">
+<!-- Form Section -->
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form class="bg-white shadow-lg rounded p-4">
+                <h2 class="text-center mb-4">Aggiungi Investimento</h2>
+                <div class="mb-3">
+                    <label for="data_inizio" class="form-label">Data Inizio</label>
+                    <input type="date" class="form-control" id="data_inizio" placeholder="Data Inizio">
                 </div>
-                <div class="mb-4">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="importo_nom">
-                        Importo Nominale
-                    </label>
-                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="importo_nom" type="number" placeholder="Importo Nominale">
+                <div class="mb-3">
+                    <label for="importo_nom" class="form-label">Importo Nominale</label>
+                    <input type="number" class="form-control" id="importo_nom" placeholder="Importo Nominale">
                 </div>
-                <div class="mb-6">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="descrizione">
-                        Descrizione
-                    </label>
-                    <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="descrizione" placeholder="Descrizione"></textarea>
+                <div class="mb-3">
+                    <label for="descrizione" class="form-label">Descrizione</label>
+                    <textarea class="form-control" id="descrizione" rows="3" placeholder="Descrizione"></textarea>
                 </div>
-                <div class="flex items-center justify-between">
-                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
-                        Aggiungi
-                    </button>
+                <div class="d-grid">
+                    <button class="btn btn-primary" type="button">Aggiungi</button>
                 </div>
             </form>
         </div>
     </div>
+</div>

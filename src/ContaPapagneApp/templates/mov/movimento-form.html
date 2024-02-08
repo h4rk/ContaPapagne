@@ -1,47 +1,77 @@
-<form id="movimento-form" class="bg-white rounded px-8 pt-6 pb-8 mb-4" hx-post="{{url_for('movimenti.createMovimento')}}" hx-target="main">
-	<div class="mb-4">
-		<label class="block text-gray-700 text-sm font-bold mb-2" for="data_movimento">
-			Data
-		</label>
-		<input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="data_movimento" name="data_movimento" type="date" placeholder="Data Movimento">
+<style>
+    .category-item {
+        padding: 8px 16px; 
+        cursor: pointer;
+    }
+
+    .category-item:hover {
+        background-color: #f3f3f3; 
+    }
+</style>
+
+<form id="movimento-form" class="bg-light rounded px-3 pt-3 pb-3 mb-3" hx-post="{{url_for('movimenti.createMovimento')}}" hx-target="main">
+	<div class="mb-3">
+			<label class="form-label" for="data_movimento">Data</label>
+			<input class="form-control" id="data_movimento" name="data_movimento" type="date" placeholder="Data Movimento">
 	</div>
-	<div class="mb-4">
-		<label class="block text-gray-700 text-sm font-bold mb-2" for="importo_movimento">
-			Importo
-		</label>
-		<input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="importo_movimento" name="importo_movimento" type="number" min="0" step="0.01" placeholder="Importo">
+	<div class="mb-3">
+			<label class="form-label" for="importo_movimento">Importo</label>
+			<input class="form-control" id="importo_movimento" name="importo_movimento" type="number" min="0" step="0.01" placeholder="Importo">
 	</div>
-	<div class="mb-4">
-		<label class="block text-gray-700 text-sm font-bold mb-2" for="categoria_movimento">
-			Categoria
-		</label>
-		<input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="categoria_movimento" 
-			name="categoria_movimento" 
-			type="text" 
-			hx-get="{{url_for('movimenti.fetchCategorie')}}" 
-			hx-target="#res_fetch" 
-			hx-swap="innerHTML" 
-			hx-trigger="keyup changed delay:500ms" 
-			hx-indicator="#fetch-indicator">
-		<div id="res_fetch">
-			<img id="fetch-indicator" src="../../static/img/spinning-circles.svg" alt="Fetching..." class="htmx-indicator">
-		</div>
+
+    <div class="mb-3 position-relative">
+        <label class="form-label" for="categoria_movimento">Categoria</label>
+        <input class="form-control" id="categoria_movimento" name="categoria_movimento" type="text" hx-get="/movimenti/fetchCategorie" hx-target="#res_fetch" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#fetch-indicator">
+        <div id="res_fetch" class="position-absolute bg-white border rounded w-100" style="max-height: 200px; overflow-y: auto; z-index: 1050; display: none;">
+            <!-- Le categorie vengono caricate qui -->
+        </div>
+    </div>
+
+	<div class="mb-3">
+			<label class="form-label" for="descrizione_movimento">Descrizione</label>
+			<textarea class="form-control" id="descrizione_movimento" name="descrizione_movimento" placeholder="Descrizione"></textarea>
 	</div>
-	<div class="mb-4">
-		<label class="block text-gray-700 text-sm font-bold mb-2" for="descrizione_movimento">
-			Descrizione
-		</label>
-		<textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="descrizione_movimento" name="descrizione_movimento" placeholder="Descrizione"></textarea>
+	<div class="mb-3">
+			<label class="form-label" for="risarcimento_movimento">Risarcimento</label>
+			<input class="form-control" id="risarcimento_movimento" name="risarcimento_movimento" type="text" placeholder="Risarcimento">
 	</div>
-	<div class="mb-4">
-		<label class="block text-gray-700 text-sm font-bold mb-2" for="risarcimento_movimento">
-			Risarcimento
-		</label>
-		<input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="risarcimento_movimento" name="risarcimento_movimento" type="text" placeholder="risarcimento">
-	</div>
-	<div class="flex items-center justify-between">
-		<button class="button-fill-effect font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
-			Registra
-		</button>
+	<div class="d-flex justify-content-between">
+			<button class="button-fill-effect" type="submit">Registra</button>
 	</div>
 </form>
+
+<script>
+    document.addEventListener('htmx:afterSwap', function(event) {
+        console.log('HTMX afterSwap event triggered');
+        if (event.detail.target.id === 'res_fetch') {
+            console.log('HTMX swapped content into #res_fetch');
+            if (event.detail.target.innerHTML.trim() !== '') {
+                event.detail.target.style.display = 'block';
+                console.log('Displaying #res_fetch');
+                attachEventListeners();
+            } else {
+                event.detail.target.style.display = 'none';
+                console.log('Hiding #res_fetch because it is empty');
+            }
+        }
+    });
+    
+    function attachEventListeners() {
+        const categoriaInput = document.getElementById('categoria_movimento');
+        const resFetch = document.getElementById('res_fetch');
+    
+        resFetch.addEventListener('click', function(e) {
+            if (e.target.classList.contains('category-item')) {
+                categoriaInput.value = e.target.textContent; // imposta l'input con valore della dropdown
+                resFetch.style.display = 'none'; // nasconde la dropdown
+            }
+        });
+    
+        categoriaInput.addEventListener('input', function() {
+            resFetch.style.display = this.value ? 'block' : 'none';
+        });
+    }
+    
+    attachEventListeners();
+    
+</script>

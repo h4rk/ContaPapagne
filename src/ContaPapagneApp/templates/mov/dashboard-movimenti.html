@@ -1,30 +1,35 @@
 <!-- Main Content -->
-<div class="container mx-auto my-8">
+<div class="container my-4">
     <!-- Page Heading -->
-    <div class="text-center mb-8">
-        <h2 class="text-3xl font-bold">Movimenti ContaPapagne</h2>
-        <p class="text-xl">Gestisci le tue transazioni finanziarie.</p>
+    <div class="text-center mb-4">
+        <h2 class="h2 fw-bold">Movimenti ContaPapagne</h2>
+        <p class="h4">Gestisci le tue transazioni finanziarie.</p>
     </div>
   
     <!-- Form Section -->
-    <div class="flex flex-col lg:flex-row gap-4 mb-8">
-        <div class="bg-white rounded shadow-lg p-6 flex-1">
-            <h3 class="text-xl font-bold mb-4">Registra Movimento</h3>
-            {% include 'mov/movimento-form.html' %}
+    <div class="row g-3 mb-4">
+        <div class="col-12 col-lg-6">
+            <div class="bg-white rounded shadow p-3">
+                <h3 class="h5 fw-bold mb-3">Registra Movimento</h3>
+                <!-- Assuming 'mov/movimento-form.html' is already refactored for Bootstrap 5 -->
+                {% include 'mov/movimento-form.html' %}
+            </div>
         </div>
         
-        <!-- Placeholder per grafici o andamenti -->
-        <div class="bg-white rounded shadow-lg p-6 flex-1">
-            <h3 class="text-xl font-bold mb-4">Andamento Movimenti</h3>
-            <div class="h-40 bg-gray-200 rounded flex items-center justify-center">
-                <!-- Graph -->
+        <!-- Placeholder for Graphs or Trends -->
+        <div class="col-12 col-lg-6">
+            <div class="bg-white rounded shadow p-3">
+                <h3 class="h5 fw-bold mb-3">Andamento Movimenti</h3>
+                <div class="bg-light rounded d-flex align-items-center justify-content-center" style="height: 160px;">
+                    <!-- Graph Placeholder -->
+                </div>
             </div>
         </div>
     </div>
   
     <!-- Movimenti Table Section -->
-    <div hx-get="{{url_for('movimenti.listaMovimenti')}}" hx-trigger="click" hx-indicator="#spinner-id" hx-target="main" class="bg-white rounded shadow-lg p-6 text-xl font-bold mb-4">
+    <div hx-get="{{url_for('movimenti.listaMovimenti')}}" hx-trigger="click" hx-indicator="#spinner-id" hx-target="main" class="bg-white rounded shadow p-3 h5 fw-bold mb-3">
         Click per andare alla lista movimenti
-        <img id="spinner-id" src="../../static/img/spinning-circles.svg" alt="Loading..." class="htmx-indicator">
+        <img id="spinner-id" src="../../static/img/spinning-circles.svg" alt="Loading..." class="htmx-indicator" style="display: none;">
     </div>
 </div>
