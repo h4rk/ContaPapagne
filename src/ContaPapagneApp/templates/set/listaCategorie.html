@@ -1,55 +1,59 @@
-<div>
-    <style>
-        .grid-header {
+<div class="container-fluid">
+        <style>
+            .grid-header {
                 display: grid;
-                grid-template-columns: 1fr 1fr 2fr 1fr 3fr;
+                grid-template-columns: repeat(3, 1fr);
                 background-color: #f2f2f2;
-        }
-    
-        .grid-header-cell {
+            }
+        
+            .grid-header-cell {
                 background-color: #134e4a;
                 color: white;
                 padding: 10px;
                 text-align: left;
                 text-transform: uppercase;
                 font-weight: bold;
-        }
-        .grid-row {
+            }
+            
+            .grid-row {
                 background-color: white;
                 border-bottom: 1px solid #ddd;
                 padding: 8px;
-        }
-        .grid-content {
+            }
+            
+            .grid-content {
                 display: grid;
-                grid-template-columns: 1fr 1fr 2fr 1fr 3fr;
+                grid-template-columns: repeat(3, 1fr);
                 gap: 5px;
                 padding: 5px;
                 background-color: #f2f2f2;
                 border-collapse: collapse;
                 overflow-y: auto;
                 max-height: 200px;
-        }
-        .categoria {
-            background-color: #134e4a;
-            padding: 3px;
-            border-radius: 5px;
-            color: #f2f2f2;
-        }
-    </style>
-
-    <div class="grid-table">
-        <div class="grid-header">
+            }
+            
+            .categoria {
+                background-color: #134e4a;
+                padding: 3px;
+                border-radius: 5px;
+                color: #f2f2f2;
+            }
+        </style>
+    
+        <div class="grid-table">
+            <div class="grid-header">
                 <div class="grid-header-cell">Nome</div>
                 <div class="grid-header-cell">Tipologia</div>
                 <div class="grid-header-cell">Descrizione</div>
-        </div>
-        <div class="grid-content">
+            </div>
+            <div class="grid-content">
                 {% for item in categorie %}
                 <div class="grid-row">{{ item.nome }}</div>
                 <div class="grid-row">{{ item.tipologia }}</div>
                 <div class="grid-row">{{ item.descrizione }}</div>
                 <div hidden>{{ item.id_categoria }}</div>
                 {% endfor %}
+            </div>
         </div>
     </div>
-</div>
+    

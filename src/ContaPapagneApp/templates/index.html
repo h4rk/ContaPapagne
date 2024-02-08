@@ -4,123 +4,125 @@
 Dashboard - ContaPapagne
 {% endblock %}
 
-{% block head %}
-{% endblock %}
-
 {% block content %}
- 
 
-  
-  
-  <!-- Hero Section -->
-  <div class="container mx-auto my-8">
-      <div class="text-center mb-8">
-          <h2 class="text-3xl font-bold">Dashboard ContaPapagne</h2>
-          <p class="text-xl">Un'occhiata alle vostre papagne finanziarie.</p>
-      </div>
-  
-      <!-- Overview Section -->
-      <div class="grid md:grid-cols-4 gap-4 mb-8">
-          <!-- Totale Investimenti -->
-          <div class="bg-white rounded shadow p-4 flex items-center justify-between">
-              <div>
-                  <span class="block text-sm font-bold text-gray-500">Totale Investimenti</span>
-                  <span class="block text-lg font-bold">€7.500</span>
-              </div>
-              <div class="text-green-500">
-                  💹
-              </div>
-          </div>
-  
-          <!-- Totale Entrate -->
-          <div class="bg-white rounded shadow p-4 flex items-center justify-between">
-              <div>
-                  <span class="block text-sm font-bold text-gray-500">Totale Entrate</span>
-                  <span class="block text-lg font-bold">€5.000</span>
-              </div>
-              <div class="text-blue-500">
-                  💰
-              </div>
-          </div>
-  
-          <!-- Totale Uscite -->
-          <div class="bg-white rounded shadow p-4 flex items-center justify-between">
-              <div>
-                  <span class="block text-sm font-bold text-gray-500">Totale Uscite</span>
-                  <span class="block text-lg font-bold">€-950</span>
-              </div>
-              <div class="text-red-500">
-                  📉
-              </div>
-          </div>
-  
-          <!-- Saldo Attuale -->
-          <div class="bg-white rounded shadow p-4 flex items-center justify-between">
-              <div>
-                  <span class="block text-sm font-bold text-gray-500">Saldo Attuale</span>
-                  <span class="block text-lg font-bold">€4.050</span>
-              </div>
-              <div class="text-purple-500">
-                  🏦
-              </div>
-          </div>
-      </div>
-  
-      <!-- Dettagli -->
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-          <!-- Grafici e tabelle if we vogliamo -->
-          <div class="md:col-span-2 lg:col-span-1 bg-white rounded shadow p-4">
-              <h3 class="font-bold text-lg mb-2">Andamento Investimenti</h3>
-              <!-- Placeholder per chart -->
-              <div class="h-40 bg-gray-200 rounded flex items-center justify-center">
-                  <span>Chart JS Placeholder</span>
-              </div>
-          </div>
-  
-          <!-- Categorie con Budget -->
-          <div class="md:col-span-2 lg:col-span-2 bg-white rounded shadow p-4">
-              <h3 class="font-bold text-lg mb-2">Panoramica Categorie</h3>
-              <div class="grid grid-cols-2 gap-4">
-                  <!-- Ogni categoria con il suo budget (oppure le principali boh) -->
-                  <div class="p-2 bg-blue-100 rounded">
-                      <span class="block text-sm font-bold">Casa</span>
-                      <span class="block text-lg">€1.200</span>
-                  </div>
-                  <div class="p-2 bg-green-100 rounded">
-                      <span class="block text-sm font-bold">Lavoro</span>
-                      <span class="block text-lg">€800</span>
-                  </div>
-                  <div class="p-2 bg-yellow-100 rounded">
-                      <span class="block text-sm font-bold">Tempo Libero</span>
-                      <span class="block text-lg">€500</span>
-                  </div>
-                  <div class="p-2 bg-red-100 rounded">
-                      <span class="block text-sm font-bold">Spese Varie</span>
-                      <span class="block text-lg">€450</span>
-                  </div>
-              </div>
-          </div>
-      </div>
-  
-  <!-- Aggiungi nuovo movimento form -->
-  <div class="mt-8 max-w-lg mx-auto">
-    <h3 class="text-lg font-bold mb-4">Aggiungi Nuovo Movimento</h3>
-    <form class="bg-white rounded shadow p-6">
-        <div class="grid grid-cols-1 gap-4">
-            <input type="text" placeholder="Descrizione" class="border p-2 rounded">
-            <input type="number" placeholder="Importo" class="border p-2 rounded">
-            <select class="border p-2 rounded">
-                <option value="entrata">Entrata</option>
-                <option value="uscita">Uscita</option>
-            </select>
-            <button type="button" class="button-fill-effect">
-              Aggiungi Movimento
-          </button>
+<div class="container">
+    <!-- Hero Section -->
+    <div class="text-center my-5">
+        <h2 class="display-4">Dashboard ContaPapagne</h2>
+        <p class="lead">Un'occhiata alle vostre papagne finanziarie.</p>
+    </div>
+
+    <!-- Overview Section -->
+    <div class="row mb-5">
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Totale Investimenti</h5>
+                    <p class="card-text">€7.500</p>
+                    <span class="text-success">💹</span>
+                </div>
+            </div>
         </div>
-    </form>
-  </div>
-  
-  
-  
-  </body>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Totale Entrate</h5>
+                    <p class="card-text">€5.000</p>
+                    <span class="text-primary">💰</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Totale Uscite</h5>
+                    <p class="card-text">€-950</p>
+                    <span class="text-danger">📉</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Saldo Attuale</h5>
+                    <p class="card-text">€4.050</p>
+                    <span class="text-purple">🏦</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dettagli -->
+    <div class="row">
+        <!-- Grafici e tabelle if we vogliamo -->
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Andamento Investimenti</h5>
+                    <div class="chart-placeholder bg-secondary text-center py-3">
+                        <span>Chart JS Placeholder</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Categorie con Budget -->
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Panoramica Categorie</h5>
+                    <div class="row">
+                        <div class="col-sm-6 mb-3">
+                            <div class="p-3 bg-info text-white rounded">
+                                <h6 class="font-weight-bold">Casa</h6>
+                                <p>€1.200</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 mb-3">
+                            <div class="p-3 bg-success text-white rounded">
+                                <h6 class="font-weight-bold">Lavoro</h6>
+                                <p>€800</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 mb-3">
+                            <div class="p-3 bg-warning text-white rounded">
+                                <h6 class="font-weight-bold">Tempo Libero</h6>
+                                <p>€500</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="p-3 bg-danger text-white rounded">
+                                <h6 class="font-weight-bold">Spese Varie</h6>
+                                <p>€450</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Aggiungi nuovo movimento form -->
+    <div class="mt-5">
+        <h3 class="h4 font-weight-bold mb-4">Aggiungi Nuovo Movimento</h3>
+        <form class="bg-light p-4 rounded">
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <input type="text" class="form-control" placeholder="Descrizione">
+                </div>
+                <div class="col-md-3">
+                    <input type="number" class="form-control" placeholder="Importo">
+                </div>
+                <div class="col-md-3">
+                    <select class="form-select">
+                        <option value="entrata">Entrata</option>
+                        <option value="uscita">Uscita</option>
+                    </select>
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary mt-3">Aggiungi Movimento</button>
+        </form>
+    </div>
+</div>
+
 {% endblock %}

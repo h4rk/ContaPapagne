@@ -1,61 +1,68 @@
-<div>
+
     <style>
-        .grid-header {
-                display: grid;
-                grid-template-columns: 1fr 1fr 2fr 1fr 3fr;
-                background-color: #f2f2f2;
-        }
-    
-        .grid-header-cell {
-                background-color: #134e4a;
-                color: white;
-                padding: 10px;
-                text-align: left;
-                text-transform: uppercase;
-                font-weight: bold;
-        }
-        .grid-row {
-                background-color: white;
-                border-bottom: 1px solid #ddd;
-                padding: 8px;
-        }
-        .grid-content {
-                display: grid;
-                grid-template-columns: 1fr 1fr 2fr 1fr 3fr;
-                gap: 5px;
-                padding: 5px;
-                background-color: #f2f2f2;
-                border-collapse: collapse;
+        .table-fixed tbody {
+                height: 300px;
                 overflow-y: auto;
-                max-height: 200px;
-        }
-        .categoria {
-            background-color: #134e4a;
-            padding: 3px;
-            border-radius: 5px;
-            color: #f2f2f2;
-        }
+                width: 100%;
+            }
+            
+            .table-fixed thead,
+            .table-fixed tbody,
+            .table-fixed tr,
+            .table-fixed td,
+            .table-fixed th {
+                display: block;
+            }
+            
+            .table-fixed tbody td,
+            .table-fixed tbody th,
+            .table-fixed thead > tr > th {
+                float: left;
+                position: relative;
+            
+                &::after {
+                    content: '';
+                    clear: both;
+                    display: block;
+                }
+            }
     </style>
-    
-    
-    <div class="grid-table">
-        <div class="grid-header">
-                <div class="grid-header-cell">Data</div>
-                <div class="grid-header-cell">Importo</div>
-                <div class="grid-header-cell">Categoria</div>
-                <div class="grid-header-cell">Risarcito</div>
-                <div class="grid-header-cell">Descrizione</div>
-        </div>
-    
-    
-        <div class="grid-content">
-                {% for item in movimenti %}
-                <div class="grid-row">{{ item.data }}</div>
-                <div class="grid-row">{{ item.importo }}</div>
-                <div class="grid-row flex gap-x-1"><span class="categoria">spesina</span><span class="categoria">spesina</span><span class="categoria">spesina</span></div>
-                <div class="grid-row">SI</div>
-                <div class="grid-row">{{ item.descrizione }}</div>
-                {% endfor %}
+
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-lg-12 mx-auto bg-white rounded shadow">
+
+                <div class="table-responsive">
+                    <table class="table table-fixed">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="col-2 py-4">Importo</th>
+                                <th scope="col" class="col-4 py-4">Categorie</th>
+                                <th scope="col" class="col-2 py-4">Data</th>
+                                <th scope="col" class="col-4 py-4">Descrizione</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                                {% for item in movimenti %}
+                            <tr>
+                                <th scope="row" class="col-2 py-2">{{ item.importo }}</th>
+                                <td class="col-4 py-2">
+                                        <div>
+                                        <div class="d-flex flex-wrap gap-2 justify-content-start">
+                                                {% for categoria in movimenti.categorie %}
+                                                <span class="categoria bg-secondary text-white px-2 rounded">{{ categoria.nome }} </span>
+                                                {% endfor %}
+                                                <span class="categoria bg-secondary text-white px-2 rounded"> abc</span>
+                                        </div>
+                                    </div></td>
+                                <td class="col-2 py-2">{{ item.data }}</td>
+                                <td class="col-4 py-2">{{ item.descrizione }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                
+            </div>
         </div>
     </div>
-</div>
