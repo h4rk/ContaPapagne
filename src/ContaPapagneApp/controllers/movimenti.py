@@ -1,6 +1,5 @@
 from flask import Blueprint, render_template, request, current_app as app
-from models.categoria_entrata import CategoriaEntrata
-from models.movimento_entrata import MovimentoEntrata
+from models.movimento import Movimento
 from models.dbconfig import db
 from .repositories import movimentiRepository as movRepo, categorieRepository as catRepo, categoriaMovimentoRepository as catMovRepo
 import time
@@ -25,13 +24,9 @@ def listaMovimenti():
 
 @mov.route('/createMovimento', methods=['POST'])
 def createMovimento():
-	mov = MovimentoEntrata.build_from_dict(request.form)
+	mov = Movimento.build_from_dict(request.form)
 	# TODO: validazione campi ? 
-	try:
-		createMovEntrataHelper(mov, request.form.get('id_categoria'))
-		return render_template('mov/dashboard-movimenti.html')
-	except Exception as e:
-		return render_template('mov/dashboard-movimenti.html')
+	# TODO implementazione
 
 #TODO: aggiungere parametro id da cancellare, cancellazione
 @mov.route('/deleteMovimento', methods=['DELETE'])
@@ -51,11 +46,3 @@ def fetchCategorie():
 		categorie = []
 	app.logger.debug(categorie)
 	return render_template('mov/list-categorie.html', categorie=categorie)
-
-def createMovEntrataHelper(movimentoEntrata, id_categoria):
-		movEnt = movRepo.createEntrata(movimentoEntrata)
-		catMovEnt = CategoriaEntrata(id_categoria, movEnt.id_entrata)
-		catMovRepo.createCategoriaEntrata(catMovEnt)
-
-def listMovimentiHelper():
-	movRepo.listMovimenti()

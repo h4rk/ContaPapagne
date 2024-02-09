@@ -5,9 +5,6 @@ from controllers.investimenti import inv
 from controllers.budgets import bud
 from controllers.settings import set
 from models.dbconfig import db
-from models.movimento_uscita import MovimentoUscita
-from models.movimento_entrata import MovimentoEntrata
-import datetime
 
 #Create app
 app = Flask(__name__)
@@ -24,9 +21,6 @@ app.register_blueprint(set)
 
 with app.app_context():
     db.create_all()
-    db.session.add(MovimentoEntrata(data=datetime.date(2024, 1, 23), importo=123.45, descrizione=None, risarcimento=None))
-    db.session.add(MovimentoUscita(data=datetime.date(2024, 1, 23), importo=543.21, descrizione=None))
-    db.session.commit()
 
 @app.route("/")
 def home():
