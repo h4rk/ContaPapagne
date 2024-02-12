@@ -28,7 +28,10 @@ class Movimento(db.Model):
 			id_movimento = dict.get('id_entrata', default=None)
 			data = date.fromisoformat(dict.get('data_movimento'))
 			importo = dict.get('importo_movimento')
-			flag_entrata = dict.get('flag_entrata')
+			if dict.get('flag_entrata') == 'true':
+				flag_entrata = True
+			else:
+				flag_entrata = False
 			descrizione = dict.get('descrizione_movimento')
 			risarcimento = dict.get('risarcimento')
 

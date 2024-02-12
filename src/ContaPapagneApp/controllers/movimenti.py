@@ -25,8 +25,10 @@ def listaMovimenti():
 @mov.route('/createMovimento', methods=['POST'])
 def createMovimento():
 	mov = Movimento.build_from_dict(request.form)
+	print(mov)
 	# TODO: validazione campi ? 
 	# TODO implementazione
+	return render_template('mov/dashboard-movimenti.html')
 
 #TODO: aggiungere parametro id da cancellare, cancellazione
 @mov.route('/deleteMovimento', methods=['DELETE'])
@@ -44,5 +46,5 @@ def fetchCategorie():
 		categorie = catRepo.findCategoriaWithNomeLike(request.args.get('categoria_movimento'))
 	else:
 		categorie = []
-	app.logger.debug(categorie)
+	# app.logger.debug(categorie)
 	return render_template('mov/list-categorie.html', categorie=categorie)

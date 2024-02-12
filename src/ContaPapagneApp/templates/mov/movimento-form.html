@@ -1,13 +1,14 @@
 <style>
 	/* CSS categorie */
-    .category-item {
-        padding: 8px 16px; 
-        cursor: pointer;
-    }
+	.category-item {
+		padding: 8px 16px;
+		cursor: pointer;
+	}
 
-    .category-item:hover {
-        background-color: #f3f3f3; 
-    }
+	.category-item:hover {
+		background-color: #f3f3f3;
+	}
+
 	/* CSS toggle slider */
 	/* The switch - the box around the slider */
 	.switch {
@@ -49,15 +50,15 @@
 		transition: .4s;
 	}
 
-	input:checked + .slider {
+	input:checked+.slider {
 		background-color: #2196F3;
 	}
 
-	input:focus + .slider {
+	input:focus+.slider {
 		box-shadow: 0 0 1px #2196F3;
 	}
 
-	input:checked + .slider:before {
+	input:checked+.slider:before {
 		-webkit-transform: translateX(26px);
 		-ms-transform: translateX(26px);
 		transform: translateX(26px);
@@ -73,76 +74,83 @@
 	}
 </style>
 
-<form id="movimento-form" class="bg-light rounded px-3 pt-3 pb-3 mb-3" hx-post="{{url_for('movimenti.createMovimento')}}" hx-target="main">
-	<div>
+<form id="movimento-form" class="bg-light rounded px-3 pt-3 pb-3 mb-3"
+	hx-post="{{url_for('movimenti.createMovimento')}}" hx-target="main">
+	<div class="mb-3">
 		USCITA
-		<label class="switch">
-			<input id="tipologia_movimento" name="tipologia_movimento" type="checkbox" onchange="switchTipoMovimento()">
+		<label class="switch" class="form-label">
+			<input id="tipologia_movimento" name="tipologia_movimento" type="checkbox" value="true" onchange="switchTipoMovimento()" class="form-control">
 			<span class="slider round"></span>
 		</label>
 		ENTRATA
 	</div>
 	<div class="mb-3">
-			<label class="form-label" for="data_movimento">Data</label>
-			<input class="form-control" id="data_movimento" name="data_movimento" type="date" placeholder="Data Movimento">
+		<label class="form-label" for="data_movimento">Data</label>
+		<input class="form-control" id="data_movimento" name="data_movimento" type="date" placeholder="Data Movimento">
 	</div>
 	<div class="mb-3">
-			<label class="form-label" for="importo_movimento">Importo</label>
-			<input class="form-control" id="importo_movimento" name="importo_movimento" type="number" min="0" step="0.01" placeholder="Importo">
+		<label class="form-label" for="importo_movimento">Importo</label>
+		<input class="form-control" id="importo_movimento" name="importo_movimento" type="number" min="0" step="0.01"
+			placeholder="Importo">
 	</div>
-    <div class="mb-3 position-relative">
-        <label class="form-label" for="categoria_movimento">Categoria</label>
-        <input class="form-control" id="categoria_movimento" name="categoria_movimento" type="text" hx-get="/movimenti/fetchCategorie" hx-target="#res_fetch" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#fetch-indicator">
-        <div id="res_fetch" class="position-absolute bg-white border rounded w-100" style="max-height: 200px; overflow-y: auto; z-index: 1050; display: none;">
-            <!-- Le categorie vengono caricate qui -->
-        </div>
-    </div>
+	<div class="mb-3 position-relative">
+		<label class="form-label" for="categoria_movimento">Categorie</label>
+		<input class="form-control" id="categoria_movimento" name="categoria_movimento" type="text"
+			hx-get="/movimenti/fetchCategorie" hx-target="#res_fetch" hx-swap="innerHTML"
+			hx-trigger="keyup changed delay:500ms" hx-indicator="#fetch-indicator">
+		<div id="res_fetch" class="position-absolute bg-white border rounded w-100"
+			style="max-height: 200px; overflow-y: auto; z-index: 1050; display: none;">
+			<!-- Le categorie vengono caricate qui -->
+		</div>
+	</div>
 
 	<div class="mb-3">
-			<label class="form-label" for="descrizione_movimento">Descrizione</label>
-			<textarea class="form-control" id="descrizione_movimento" name="descrizione_movimento" placeholder="Descrizione"></textarea>
+		<label class="form-label" for="descrizione_movimento">Descrizione</label>
+		<textarea class="form-control" id="descrizione_movimento" name="descrizione_movimento"
+			placeholder="Descrizione"></textarea>
 	</div>
 	<div class="mb-3">
-			<label class="form-label" for="risarcimento_movimento">Risarcimento</label>
-			<input class="form-control" id="risarcimento_movimento" name="risarcimento_movimento" type="text" placeholder="Risarcimento">
+		<label class="form-label" for="risarcimento_movimento">Risarcimento</label>
+		<input class="form-control" disabled="true" id="risarcimento_movimento" name="risarcimento_movimento"
+			type="text" placeholder="Risarcimento">
 	</div>
 	<div class="d-flex justify-content-between">
-			<button class="button-fill-effect" type="submit">Registra</button>
+		<button class="button-fill-effect" type="submit">Registra</button>
 	</div>
 </form>
 
 <script>
-    document.addEventListener('htmx:afterSwap', function(event) {
-        console.log('HTMX afterSwap event triggered');
-        if (event.detail.target.id === 'res_fetch') {
-            console.log('HTMX swapped content into #res_fetch');
-            if (event.detail.target.innerHTML.trim() !== '') {
-                event.detail.target.style.display = 'block';
-                console.log('Displaying #res_fetch');
-                attachEventListeners();
-            } else {
-                event.detail.target.style.display = 'none';
-                console.log('Hiding #res_fetch because it is empty');
-            }
-        }
-    });
-    
-    function attachEventListeners() {
-        const categoriaInput = document.getElementById('categoria_movimento');
-        const resFetch = document.getElementById('res_fetch');
-    
-        resFetch.addEventListener('click', function(e) {
-            if (e.target.classList.contains('category-item')) {
-                categoriaInput.value = e.target.textContent; // imposta l'input con valore della dropdown
-                resFetch.style.display = 'none'; // nasconde la dropdown
-            }
-        });
-    
-        categoriaInput.addEventListener('input', function() {
-            resFetch.style.display = this.value ? 'block' : 'none';
-        });
-    }
-    
-    attachEventListeners();
-    
+	document.addEventListener('htmx:afterSwap', function (event) {
+		console.log('HTMX afterSwap event triggered');
+		if (event.detail.target.id === 'res_fetch') {
+			console.log('HTMX swapped content into #res_fetch');
+			if (event.detail.target.innerHTML.trim() !== '') {
+				event.detail.target.style.display = 'block';
+				console.log('Displaying #res_fetch');
+				attachEventListeners();
+			} else {
+				event.detail.target.style.display = 'none';
+				console.log('Hiding #res_fetch because it is empty');
+			}
+		}
+	});
+
+	function attachEventListeners() {
+		const categoriaInput = document.getElementById('categoria_movimento');
+		const resFetch = document.getElementById('res_fetch');
+
+		resFetch.addEventListener('click', function (e) {
+			if (e.target.classList.contains('category-item')) {
+				categoriaInput.value = e.target.textContent; // imposta l'input con valore della dropdown
+				resFetch.style.display = 'none'; // nasconde la dropdown
+			}
+		});
+
+		categoriaInput.addEventListener('input', function () {
+			resFetch.style.display = this.value ? 'block' : 'none';
+		});
+	}
+
+	attachEventListeners();
+
 </script>
