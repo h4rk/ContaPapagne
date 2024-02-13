@@ -74,50 +74,63 @@
 	}
 </style>
 
-<form id="movimento-form" class="bg-light rounded px-3 pt-3 pb-3 mb-3"
-	hx-post="{{url_for('movimenti.createMovimento')}}" hx-target="main">
-	<div class="mb-3">
-		USCITA
-		<label class="switch" class="form-label">
-			<input id="tipologia_movimento" name="tipologia_movimento" type="checkbox" value="true" onchange="switchTipoMovimento()" class="form-control">
-			<span class="slider round"></span>
-		</label>
-		ENTRATA
-	</div>
-	<div class="mb-3">
-		<label class="form-label" for="data_movimento">Data</label>
-		<input class="form-control" id="data_movimento" name="data_movimento" type="date" placeholder="Data Movimento">
-	</div>
-	<div class="mb-3">
-		<label class="form-label" for="importo_movimento">Importo</label>
-		<input class="form-control" id="importo_movimento" name="importo_movimento" type="number" min="0" step="0.01"
-			placeholder="Importo">
-	</div>
-	<div class="mb-3 position-relative">
-		<label class="form-label" for="categoria_movimento">Categorie</label>
-		<input class="form-control" id="categoria_movimento" name="categoria_movimento" type="text"
-			hx-get="/movimenti/fetchCategorie" hx-target="#res_fetch" hx-swap="innerHTML"
-			hx-trigger="keyup changed delay:500ms" hx-indicator="#fetch-indicator">
-		<div id="res_fetch" class="position-absolute bg-white border rounded w-100"
-			style="max-height: 200px; overflow-y: auto; z-index: 1050; display: none;">
-			<!-- Le categorie vengono caricate qui -->
-		</div>
-	</div>
+<form id="movimento-form" class="px-3 pt-3 pb-3 mb-3" hx-post="{{url_for('movimenti.createMovimento')}}" hx-target="main">
+ <div class="form-group row mb-3">
+   <label for="tipologia_movimento" class="col-sm-2 col-form-label">Tipo:</label>
+   <div class="col-sm-10">
+     <div class="form-check form-switch">
+       <input class="form-check-input" id="tipologia_movimento" name="tipologia_movimento" type="checkbox" value="true" onchange="switchTipoMovimento()">
+       <label class="form-check-label" for="tipologia_movimento">USCITA / ENTRATA</label>
+     </div>
+   </div>
+ </div>
 
-	<div class="mb-3">
-		<label class="form-label" for="descrizione_movimento">Descrizione</label>
-		<textarea class="form-control" id="descrizione_movimento" name="descrizione_movimento"
-			placeholder="Descrizione"></textarea>
+ <div class="form-group row mb-3">
+   <label for="data_movimento" class="col-sm-2 col-form-label">Data:</label>
+   <div class="col-sm-10">
+     <input class="form-control" id="data_movimento" name="data_movimento" type="date" placeholder="Data Movimento">
+   </div>
+ </div>
+
+ <div class="form-group row mb-3">
+    <label for="importo_movimento" class="col-sm-2 col-form-label">Importo:</label>
+    <div class="col-sm-10">
+      <input class="form-control" id="importo_movimento" name="importo_movimento" type="number" min="0" step="0.01" placeholder="Importo">
+    </div>
+ </div>
+
+ <div class="form-group row mb-3">
+    <label for="risarcimento_movimento" class="col-sm-2 col-form-label">Risarcimento:</label>
+    <div class="col-sm-10">
+      <input class="form-control" id="risarcimento_movimento" name="risarcimento_movimento" type="text" placeholder="Risarcimento" disabled="true">
+    </div>
+ </div> 
+
+ <div class="form-group row mb-3">
+   <label for="categoria_movimento" class="col-sm-2 col-form-label">Categorie:</label>
+   <div class="col-sm-10">
+     <div class="input-group"> 
+       <input class="form-control" id="categoria_movimento" name="categoria_movimento" type="text"
+         hx-get="/movimenti/fetchCategorie" hx-target="#res_fetch" hx-swap="innerHTML"
+         hx-trigger="keyup changed delay:500ms" hx-indicator="#fetch-indicator">
+       <div id="res_fetch" class="position-absolute bg-white border rounded w-100" style="max-height: 200px; overflow-y: auto; z-index: 1050; display: none;"></div>
+     </div>
+   </div>
+ </div>
+
+ <div class="form-group row mb-3">
+    <label for="descrizione_movimento" class="col-sm-2 col-form-label">Descrizione:</label>
+    <div class="col-sm-10">
+      <textarea class="form-control" id="descrizione_movimento" name="descrizione_movimento" placeholder="Descrizione"></textarea>
+    </div>
+</div> 
+
+<div class="form-group row mb-3">
+	<div class="col-sm-10 offset-sm-2"> <button type="submit" class="btn btn-primary">Registra</button>
 	</div>
-	<div class="mb-3">
-		<label class="form-label" for="risarcimento_movimento">Risarcimento</label>
-		<input class="form-control" disabled="true" id="risarcimento_movimento" name="risarcimento_movimento"
-			type="text" placeholder="Risarcimento">
-	</div>
-	<div class="d-flex justify-content-between">
-		<button class="button-fill-effect" type="submit">Registra</button>
-	</div>
+</div>
 </form>
+
 
 <script>
 	document.addEventListener('htmx:afterSwap', function (event) {

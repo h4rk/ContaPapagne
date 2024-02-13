@@ -1,24 +1,42 @@
-<div>
-	<form id="categoria-form" class="bg-white rounded p-4 mb-4" hx-post="{{ url_for('settings.createCategoria') }}" hx-swap="outerHTML">
+<div class="container mt-4">
+	<form id="categoria-form" class="bg-light p-4 border rounded" hx-post="{{ url_for('settings.createCategoria') }}" hx-swap="outerHTML">
 			<div class="mb-3">
 					<label for="nome_categoria" class="form-label">Nome</label>
 					<input type="text" id="nome_categoria" name="nome_categoria" class="form-control" placeholder="Nome">
 			</div>
 			<div class="mb-3">
-					<label for="tipologia_categoria" class="form-label">Tipologia</label>
-					<select class="form-select" id="tipologia_categoria" name="tipologia_categoria">
-							<option value="0">Solo entrate</option>
-							<option value="1">Solo Uscite</option>
-							<option value="2">Entrambe</option>
-					</select>
+					<label class="form-label">Tipologia</label>
+					<div class="d-flex justify-content-around">
+							<div class="form-check form-check-inline">
+									<input class="form-check-input" type="radio" name="tipologia" id="solo_entrate" value="0">
+									<label class="form-check-label" for="solo_entrate">
+											💹 Solo entrate
+									</label>
+							</div>
+							<div class="form-check form-check-inline">
+									<input class="form-check-input" type="radio" name="tipologia" id="solo_uscite" value="1">
+									<label class="form-check-label" for="solo_uscite">
+											📉 Solo Uscite
+									</label>
+							</div>
+							<div class="form-check form-check-inline">
+									<input class="form-check-input" type="radio" name="tipologia" id="entrambe" value="2">
+									<label class="form-check-label" for="entrambe">
+											🔄 Entrambe
+									</label>
+							</div>
+					</div>
 			</div>
 			<div class="mb-3">
 					<label for="descrizione_categoria" class="form-label">Descrizione</label>
 					<textarea class="form-control" id="descrizione_categoria" name="descrizione_categoria" rows="3" placeholder="Descrizione categoria"></textarea>
 			</div>
-			<button class="btn btn-primary" type="submit">Crea Categoria</button>
+			<button type="submit" class="btn btn-primary">Crea Categoria</button>
 	</form>
-	<div hx-get="{{ url_for('settings.listCategorie') }}" hx-trigger="load" hx-swap="outerHTML" hx-indicator="#spinner-id" class="bg-white rounded shadow-lg p-4 text-xl font-bold mb-4">
-			<img src="../../static/img/spinning-circles.svg" alt="Loading..." class="mx-auto d-block" id="spinner-id" style="width: 50px; height: 50px;">
-	</div>
+</div>
+
+
+<div hx-get="{{ url_for('settings.listCategorie') }}" hx-trigger="load" hx-swap="outerHTML" hx-indicator="#spinner-id" class="bg-white rounded shadow-lg p-4 text-xl font-bold mb-4">
+	<img src="../../static/img/spinning-circles.svg" alt="Loading..." class="mx-auto d-block" id="spinner-id" style="width: 50px; height: 50px;">
+</div>
 </div>

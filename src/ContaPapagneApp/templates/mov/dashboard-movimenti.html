@@ -1,35 +1,42 @@
-<!-- Main Content -->
 <div class="container my-4">
-    <!-- Page Heading -->
     <div class="text-center mb-4">
-        <h2 class="h2 fw-bold">Movimenti ContaPapagne</h2>
-        <p class="h4">Gestisci le tue transazioni finanziarie.</p>
+      <h1 class="display-4 fw-bold">Movimenti ContaPapagne</h1>
+      <p class="lead">Gestisci le tue transazioni finanziarie.</p>
     </div>
   
-    <!-- Form Section -->
-    <div class="row g-3 mb-4">
-        <div class="col-12 col-lg-6">
-            <div class="bg-white rounded shadow p-3">
-                <h3 class="h5 fw-bold mb-3">Registra Movimento</h3>
-                <!-- Assuming 'mov/movimento-form.html' is already refactored for Bootstrap 5 -->
-                {% include 'mov/movimento-form.html' %}
+    <div class="row g-4 mb-4">
+      <div class="col-12 col-lg-6">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title fw-bold mb-0">Registra Movimento</h5>
+          </div>
+          <div class="card-body">
+            {% include 'mov/movimento-form.html' %}
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-12 col-lg-6">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title fw-bold mb-0">Andamento Movimenti</h5>
+          </div>
+          <div class="card-body d-flex align-items-center justify-content-center" style="height: 160px;">
             </div>
         </div>
-        
-        <!-- Placeholder for Graphs or Trends -->
-        <div class="col-12 col-lg-6">
-            <div class="bg-white rounded shadow p-3">
-                <h3 class="h5 fw-bold mb-3">Andamento Movimenti</h3>
-                <div class="bg-light rounded d-flex align-items-center justify-content-center" style="height: 160px;">
-                    <!-- Graph Placeholder -->
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
   
-    <!-- Movimenti Table Section -->
-    <div hx-get="{{url_for('movimenti.listaMovimenti')}}" hx-trigger="click" hx-indicator="#spinner-id" hx-target="main" class="bg-white rounded shadow p-3 h5 fw-bold mb-3">
-        Click per andare alla lista movimenti
-        <img id="spinner-id" src="../../static/img/spinning-circles.svg" alt="Loading..." class="htmx-indicator" style="display: none;">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="card-title fw-bold mb-0">Lista Movimenti</h5>
+      </div>
+      <div class="card-body">
+        <button hx-get="{{url_for('movimenti.listaMovimenti')}}" hx-trigger="click" hx-indicator="#spinner-id" hx-target="this" class="btn btn-primary me-2">
+          Vai alla lista
+          <img id="spinner-id" src="../../static/img/spinning-circles.svg" alt="Loading..." class="htmx-indicator" style="display: none;">
+        </button> 
+        </div>
     </div>
-</div>
+  </div>
+  
