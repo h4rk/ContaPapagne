@@ -1,13 +1,40 @@
 <style>
-	/* CSS categorie */
-	.category-item {
-		padding: 8px 16px;
-		cursor: pointer;
+	.tags-look .tagify__dropdown__item{
+			display: inline-block;
+			vertical-align: middle;
+			border-radius: 3px;
+			padding: .3em .5em;
+			border: 1px solid #CCC;
+			background: #F3F3F3;
+			margin: .2em;
+			font-size: .85em;
+			color: black;
+			transition: 0s;
 	}
+	
+	.tags-look .tagify__dropdown__item--active{
+			color: black;
+	}
+	
+	.tags-look .tagify__dropdown__item:hover{
+			background: lightyellow;
+			border-color: gold;
+	}
+	
+	.tags-look .tagify__dropdown__item--hidden {
+			max-width: 0;
+			max-height: initial;
+			padding: .3em 0;
+			margin: .2em 0;
+			white-space: nowrap;
+			text-indent: -20px;
+			border: 0;
+	}
+	</style>
 
-	.category-item:hover {
-		background-color: #f3f3f3;
-	}
+
+<style>
+
 
 	/* CSS toggle slider */
 	/* The switch - the box around the slider */
@@ -74,96 +101,87 @@
 	}
 </style>
 
-<form id="movimento-form" class="px-3 pt-3 pb-3 mb-3" hx-post="{{url_for('movimenti.createMovimento')}}" hx-target="main">
- <div class="form-group row mb-3">
-   <label for="tipologia_movimento" class="col-sm-2 col-form-label">Tipo:</label>
-   <div class="col-sm-10">
-     <div class="form-check form-switch">
-       <input class="form-check-input" id="tipologia_movimento" name="tipologia_movimento" type="checkbox" value="true" onchange="switchTipoMovimento()">
-       <label class="form-check-label" for="tipologia_movimento">USCITA / ENTRATA</label>
-     </div>
-   </div>
- </div>
+<form id="movimento-form" hx-post="{{url_for('movimenti.createMovimento')}}" hx-target="main"> 
 
- <div class="form-group row mb-3">
-   <label for="data_movimento" class="col-sm-2 col-form-label">Data:</label>
-   <div class="col-sm-10">
-     <input class="form-control" id="data_movimento" name="data_movimento" type="date" placeholder="Data Movimento">
-   </div>
- </div>
+	<fieldset class="mb-3"> 
+			<legend class="h5">Tipo di Movimento</legend>
+			<div class="form-check form-switch">
+					<input class="form-check-input" id="tipologia_movimento" name="tipologia_movimento" type="checkbox" value="true" onchange="switchTipoMovimento()">
+					<label class="form-check-label" for="tipologia_movimento">USCITA / ENTRATA</label>
+			</div>
+	</fieldset>
 
- <div class="form-group row mb-3">
-    <label for="importo_movimento" class="col-sm-2 col-form-label">Importo:</label>
-    <div class="col-sm-10">
-      <input class="form-control" id="importo_movimento" name="importo_movimento" type="number" min="0" step="0.01" placeholder="Importo">
-    </div>
- </div>
-
- <div class="form-group row mb-3">
-    <label for="risarcimento_movimento" class="col-sm-2 col-form-label">Risarcimento:</label>
-    <div class="col-sm-10">
-      <input class="form-control" id="risarcimento_movimento" name="risarcimento_movimento" type="text" placeholder="Risarcimento" disabled="true">
-    </div>
- </div> 
-
- <div class="form-group row mb-3">
-   <label for="categoria_movimento" class="col-sm-2 col-form-label">Categorie:</label>
-   <div class="col-sm-10">
-     <div class="input-group"> 
-       <input class="form-control" id="categoria_movimento" name="categoria_movimento" type="text"
-         hx-get="/movimenti/fetchCategorie" hx-target="#res_fetch" hx-swap="innerHTML"
-         hx-trigger="keyup changed delay:500ms" hx-indicator="#fetch-indicator">
-       <div id="res_fetch" class="position-absolute bg-white border rounded w-100" style="max-height: 200px; overflow-y: auto; z-index: 1050; display: none;"></div>
-     </div>
-   </div>
- </div>
-
- <div class="form-group row mb-3">
-    <label for="descrizione_movimento" class="col-sm-2 col-form-label">Descrizione:</label>
-    <div class="col-sm-10">
-      <textarea class="form-control" id="descrizione_movimento" name="descrizione_movimento" placeholder="Descrizione"></textarea>
-    </div>
-</div> 
-
-<div class="form-group row mb-3">
-	<div class="col-sm-10 offset-sm-2"> <button type="submit" class="btn btn-primary">Registra</button>
+	<div class="form-row mb-3">
+			<div class="form-group col-md-6">
+					<label for="data_movimento" >Data:</label> 
+					<input class="form-control" id="data_movimento" name="data_movimento" type="date" placeholder="Data Movimento" required>
+			</div>
+			<div class="form-group col-md-6">
+					<label for="importo_movimento">Importo:</label>
+					<div class="input-group"> 
+							<div class="input-group-prepend">
+									<span class="input-group-text">€</span> 
+							</div>
+							<input class="form-control" id="importo_movimento" name="importo_movimento" type="number" min="0" step="0.01" placeholder="0.00" required>
+					</div>    
+			</div>
 	</div>
+
+	<div class="form-group mb-3"> 
+		<label for="categoria_movimento">Categoria:</label>
+		<div class="input-group"> 
+				<input class="form-control some_class_name" id="categoria_movimento" name="categoria_movimento" type="text"
+						hx-get="/movimenti/fetchCategorie" hx-target="#res_fetch" hx-swap="innerHTML"
+						hx-trigger="keyup changed delay:500ms" hx-indicator="#fetch-indicator" required placeholder='write some tags'>
+				<div id="res_fetch" class="autocomplete-results"></div>
+		</div>
 </div>
+
+	<div class="form-group mb-3">
+			<label for="risarcimento_movimento">Risarcimento:</label>
+			<input class="form-control" id="risarcimento_movimento" name="risarcimento_movimento" type="text" placeholder="Importo Risarcimento" disabled>
+			<small class="form-text text-muted" id="risarcimentoHelp">Compilare solo se applicabile.</small> 
+	</div> 
+
+	<div class="form-group mb-4">
+			<label for="descrizione_movimento">Descrizione:</label>
+			<textarea class="form-control" id="descrizione_movimento" name="descrizione_movimento" placeholder="Note Aggiuntive" rows="3"></textarea>
+	</div> 
+
+	<button type="submit" class="btn btn-primary btn-lg">Registra</button> 
 </form>
 
 
 <script>
-	document.addEventListener('htmx:afterSwap', function (event) {
-		console.log('HTMX afterSwap event triggered');
-		if (event.detail.target.id === 'res_fetch') {
-			console.log('HTMX swapped content into #res_fetch');
-			if (event.detail.target.innerHTML.trim() !== '') {
-				event.detail.target.style.display = 'block';
-				console.log('Displaying #res_fetch');
-				attachEventListeners();
-			} else {
-				event.detail.target.style.display = 'none';
-				console.log('Hiding #res_fetch because it is empty');
+	document.addEventListener("DOMContentLoaded", function() {
+			var input = document.querySelector('input[name="categoria_movimento"]');
+			var tagify = new Tagify(input, {
+					maxTags: 10,
+					dropdown: {
+							maxItems: 20, 
+							classname: "tags-look", 
+							enabled: 0, 
+							closeOnSelect: false 
+					}
+			});
+	
+			
+			function updateWhitelistAndShowDropdown(data) {
+					tagify.settings.whitelist = data; 
+					tagify.dropdown.show.call(tagify);
 			}
-		}
+	
+			input.addEventListener('input', function(e) {
+					var searchVal = e.target.value;
+					if(searchVal.length > 1) { 
+							fetch('/movimenti/fetchCategorie?categoria_movimento=' + encodeURIComponent(searchVal))
+									.then(response => response.json())
+									.then(data => {
+											updateWhitelistAndShowDropdown(data); 
+									})
+									.catch(error => console.error('Error fetching categories:', error));
+					}
+			});
 	});
-
-	function attachEventListeners() {
-		const categoriaInput = document.getElementById('categoria_movimento');
-		const resFetch = document.getElementById('res_fetch');
-
-		resFetch.addEventListener('click', function (e) {
-			if (e.target.classList.contains('category-item')) {
-				categoriaInput.value = e.target.textContent; // imposta l'input con valore della dropdown
-				resFetch.style.display = 'none'; // nasconde la dropdown
-			}
-		});
-
-		categoriaInput.addEventListener('input', function () {
-			resFetch.style.display = this.value ? 'block' : 'none';
-		});
-	}
-
-	attachEventListeners();
-
-</script>
+	</script>
+	
