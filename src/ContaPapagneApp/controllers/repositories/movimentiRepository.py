@@ -6,8 +6,9 @@ def findMovimentoById(id: int):
     sql = text("SELECT * FROM movimento m WHERE m.id_movimento = :id")
     return db.session.execute(sql, {'id':id}).fetchone()
 
-def createEntrata(mov) -> Movimento:
+def createMovimento(mov) -> Movimento:
     db.session.add(mov)
+    db.session.flush()
     return mov
     
 def listMovimenti():

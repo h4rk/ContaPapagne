@@ -25,6 +25,9 @@ def listaMovimenti():
 @mov.route('/createMovimento', methods=['POST'])
 def createMovimento():
 	mov = Movimento.build_from_dict(request.form)
+	mov = movRepo.createMovimento(mov)
+	#
+	#catMovRepo.createCategoriaMovimento(mov.id_movimento, )
 	print(mov)
 	# TODO: validazione campi ? 
 	# TODO implementazione
