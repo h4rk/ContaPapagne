@@ -96,16 +96,27 @@ export class Option {
 
     /**
      * render the Option
-     * @returns HTMLOptionElement
+     * @returns {HTMLOptionElement}
      */
     #renderOption() {
         let t = document.createElement('option');
         t.setAttribute('id', this.#id);
+        t.setAttribute('value', this.#id);
         t.setAttribute('selected', 'selected');
         t.innerText = this.#value;
+        return t;
     }
 
+    /**
+     * render the div version of the option with classes for styling
+     * @returns {HTMLDivElement}
+     */
     renderDiv(){
-        // TODO
+        let t = document.createElement('div');
+        t.setAttribute('id', this.#id);
+        t.setAttribute('class', 'category')
+        //TODO parametrizzare colore e aggiungere bottone on click deselect()
+        t.innerText = '<span>' + this.#value + '</span>';
+        return t;
     }
 }
