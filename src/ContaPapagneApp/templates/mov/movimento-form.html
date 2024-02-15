@@ -1,5 +1,29 @@
 <style>
-	.hide-tooltip { 
+
+.highlight-checkbox {
+	background-color: #ffc6a2;
+    border-color: #ffc6a2;
+}
+
+	.highlight {
+	font-weight: bold;
+	padding: 2px 6px;
+	border-radius: 4px;
+	box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.entrata.highlight {
+	color: #0d6efd; 
+	background-color: #d1e7ff; 
+	border: 1px solid #0d6efd; 
+}
+.uscita.highlight {
+	color: #D25A0F; 
+	background-color: #ffc6a2; 
+	border: 1px solid #D25A0F; 
+}
+
+	.hide { 
     display: none !important; 
 }
 	.icon-container img:nth-child(2) {
@@ -82,15 +106,14 @@
 <form id="movimento-form" hx-post="{{url_for('movimenti.createMovimento')}}" hx-target="main"> 
 
 	<fieldset class="mb-3"> 
-			<legend class="h5">Tipo di Movimento</legend>
+		<label for="tipologia_movimento">Tipo di form:</label>
 			<div class="form-check form-switch">
-					<input class="form-check-input" id="tipologia_movimento" name="tipologia_movimento" type="checkbox" value="true" onchange="switchTipoMovimento()">
-					<label class="form-check-label" for="tipologia_movimento">USCITA / ENTRATA</label>
+				<input class="form-check-input highlight-checkbox" id="tipologia_movimento" name="tipologia_movimento" type="checkbox" value="true" onchange="switchTipoMovimento();toggleTooltipVisibility();boldTipologia()">					<label class="form-check-label" for="tipologia_movimento"><span id="uscita" class="uscita highlight">USCITA</span><span id="entrata"class="hide entrata">ENTRATA</span></label>
 			</div>
 	</fieldset>
 
-	<div class="form-row mb-3">
-			<div class="form-group col-md-6">
+	<div class="form-row mb-3 d-flex">
+			<div class="form-group col-md-4" style="margin-right: 1rem;">
 					<label for="data_movimento" >Data:</label> 
 					<input class="form-control" id="data_movimento" name="data_movimento" type="date" placeholder="Data Movimento" required>
 			</div>
@@ -125,21 +148,54 @@
       <input class="form-control" id="risarcimento_movimento" name="risarcimento_movimento" type="text" placeholder="Importo Risarcimento" disabled>
       <small class="form-text text-muted" id="risarcimentoHelp">Compilare solo se applicabile.</small> 
   </div> 
-
 	<div class="form-group mb-4">
-			<label for="descrizione_movimento">Descrizione:</label>
-			<textarea class="form-control" id="descrizione_movimento" name="descrizione_movimento" placeholder="Note Aggiuntive" rows="3"></textarea>
-	</div> 
+		<label for="descrizione_movimento">Descrizione:</label>
+		<textarea class="form-control" id="descrizione_movimento" name="descrizione_movimento" placeholder="Note Aggiuntive" rows="1"></textarea>
+</div> 
+
 
 	<button type="submit" class="btn btn-primary btn-lg">Registra</button> 
 </form>
 
 
 <script>
-	var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
 var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
   return new bootstrap.Tooltip(tooltipTriggerEl)
 })
+
+
+
+function toggleTooltipVisibility() {
+	var tooltipContainer = document.getElementById("tooltip-container");
+
+	if (tooltipContainer.classList.contains("hide")) {
+			tooltipContainer.classList.remove("hide");
+	} else {
+			tooltipContainer.classList.add("hide");
+	}
+}
+
+function boldTipologia() {
+	var uscita = document.getElementById("uscita");
+	var entrata = document.getElementById("entrata");
+	var checkbox = document.getElementById("tipologia_movimento");
+
+	if (checkbox.checked) {
+		checkbox.classList.remove("highlight-checkbox")
+			entrata.classList.add("highlight");
+			entrata.classList.remove("hide");
+			uscita.classList.remove("highlight");
+			uscita.classList.add("hide");
+
+	} else {
+			checkbox.classList.add("highlight-checkbox")
+			uscita.classList.add("highlight");
+			uscita.classList.remove("hide");
+			entrata.classList.remove("highlight");
+			entrata.classList.add("hide");
+	}
+}
 
 	</script>
 	
