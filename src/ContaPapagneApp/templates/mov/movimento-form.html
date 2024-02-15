@@ -1,40 +1,18 @@
 <style>
-	.tags-look .tagify__dropdown__item{
-			display: inline-block;
-			vertical-align: middle;
-			border-radius: 3px;
-			padding: .3em .5em;
-			border: 1px solid #CCC;
-			background: #F3F3F3;
-			margin: .2em;
-			font-size: .85em;
-			color: black;
-			transition: 0s;
+	.hide-tooltip { 
+    display: none !important; 
+}
+	.icon-container img:nth-child(2) {
+		display: none; 
 	}
 	
-	.tags-look .tagify__dropdown__item--active{
-			color: black;
+	.icon-container:hover img:nth-child(1) {
+		display: none;
 	}
 	
-	.tags-look .tagify__dropdown__item:hover{
-			background: lightyellow;
-			border-color: gold;
+	.icon-container:hover img:nth-child(2) {
+		display: block;
 	}
-	
-	.tags-look .tagify__dropdown__item--hidden {
-			max-width: 0;
-			max-height: initial;
-			padding: .3em 0;
-			margin: .2em 0;
-			white-space: nowrap;
-			text-indent: -20px;
-			border: 0;
-	}
-	</style>
-
-
-<style>
-
 
 	/* CSS toggle slider */
 	/* The switch - the box around the slider */
@@ -139,8 +117,9 @@
 
   <div class="form-group mb-3">
       <label for="risarcimento_movimento" class="tooltip-label d-flex" style="gap:5px">Risarcimento
-				<span class="tooltip-trigger" data-bs-toggle="tooltip" data-bs-placement="top" title="Your helpful tooltip text" style="width: 20px; height: 20px;">
+				<span id="tooltip-container" class="tooltip-trigger icon-container" data-bs-toggle="tooltip" data-bs-placement="top" title="Your helpful tooltip text" style="width: 20px; height: 20px;">
 					<img src="../static/img/question-mark.svg" alt="Question Mark" width="16" height="16"> 
+					<img src="../static/img/question-mark-full.svg" alt="Question Mark" width="16" height="16">
 				</span>
 			</label> 
       <input class="form-control" id="risarcimento_movimento" name="risarcimento_movimento" type="text" placeholder="Importo Risarcimento" disabled>
@@ -162,35 +141,5 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
   return new bootstrap.Tooltip(tooltipTriggerEl)
 })
 
-	document.addEventListener("DOMContentLoaded", function() {
-			var input = document.querySelector('input[name="categoria_movimento"]');
-			var tagify = new Tagify(input, {
-					maxTags: 10,
-					dropdown: {
-							maxItems: 20, 
-							classname: "tags-look", 
-							enabled: 0, 
-							closeOnSelect: false 
-					}
-			});
-	
-			
-			function updateWhitelistAndShowDropdown(data) {
-					tagify.settings.whitelist = data; 
-					tagify.dropdown.show.call(tagify);
-			}
-	
-			input.addEventListener('input', function(e) {
-					var searchVal = e.target.value;
-					if(searchVal.length > 1) { 
-							fetch('/movimenti/fetchCategorie?categoria_movimento=' + encodeURIComponent(searchVal))
-									.then(response => response.json())
-									.then(data => {
-											updateWhitelistAndShowDropdown(data); 
-									})
-									.catch(error => console.error('Error fetching categories:', error));
-					}
-			});
-	});
 	</script>
 	
