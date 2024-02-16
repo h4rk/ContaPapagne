@@ -1,27 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
 <style>
-  .tag {
-    display: inline-block;
-    padding: 5px 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin: 2px;
-    position: relative;
-    cursor: default;
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+.tag {
+  display: inline-block;
+  padding: 6px 12px;
+  background-color: #f8f8f8; 
+  border: none;
+  border-radius: 3px;
+  margin: 4px;
+  position: relative;
+  font-family: 'Roboto', sans-serif;
+  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.1); 
 }
 
-.rimuovi {
-    margin-left: 5px;
-    color: #999;
-    cursor: pointer;
+.tag:hover {
+  background-color: #f0f0f0; 
 }
 
-.rimuovi:hover {
-    color: #666;
+.rimuovi img {  /* Target the SVG */
+  width: 12px;   /* Adjust size as needed */
+  height: 12px; 
+  cursor: pointer;
+  opacity: 0.7;              
+  transition: opacity 0.2s ease; 
+}
+
+.rimuovi img:hover {
+  opacity: 1;  
 }
 
 </style>
+</head>
+<body>
 
 <div class="tag">
-  <span class="label-text">testo label</span>
-  <span class="rimuovi" >X</span>
+  <span class="label-text">Opzione 1</span>
+  <span class="rimuovi">
+    <img src="../static/img/close.svg" alt="close"> 
+  </span>
 </div>
+
+<div class="tag">
+  <span class="label-text">Opzione 2</span>
+  <span class="rimuovi">
+    <img src="../static/img/close.svg" alt="close"> 
+  </span>
+</div>
+
+</body>
+</html>
