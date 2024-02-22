@@ -32,7 +32,7 @@ class Categoria(db.Model):
 		return {"value":self.id_categoria, "text":self.nome, "color":self.colore}
 
 	def __str__(self):
-		return 'Categoria(id='+ str(self.id_categoria) +', nome= '+ str(self.nome) +', tipologia='+str(self.tipologia)+', descrizione='+str(self.descrizione)+' )'
+		return 'Categoria(id='+ str(self.id_categoria) +', nome='+ str(self.nome) +', tipologia='+str(self.tipologia)+', colore='+str(self.colore)+', descrizione='+str(self.descrizione)+' )'
 
 	def __repr__(self):
-		return 'Categoria(id='+ str(self.id_categoria) +', nome= '+ str(self.nome) +', tipologia='+str(self.tipologia)+', descrizione='+str(self.descrizione)+' )'
+		return 'Categoria(id='+ str(self.id_categoria) +', nome='+ str(self.nome) +', tipologia='+str(self.tipologia)+', colore='+str(self.colore)+', descrizione='+str(self.descrizione)+' )'
