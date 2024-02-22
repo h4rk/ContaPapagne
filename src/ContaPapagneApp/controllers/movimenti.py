@@ -45,9 +45,11 @@ def putMovimento():
 
 @mov.route('/fetchCategorie', methods=['GET'])
 def fetchCategorie():
+	output = []
 	if (request.args.get('categoria_movimento') != ''):
 		categorie = catRepo.findCategoriaWithNomeLike(request.args.get('categoria_movimento'))
-	else:
-		categorie = []
-	# app.logger.debug(categorie)
-	return render_template('mov/list-categorie.html', categorie=categorie)
+		for cat in categorie:
+			output.append(cat.toDict())
+		app.logger.debug(output)
+
+	return output

@@ -10,12 +10,14 @@ def createCategoria(categoria: Categoria) -> int:
 
 def listCategorie():
 	stmt = select(Categoria)
-	app.logger.debug("listCategorie query: \n" + str(stmt))
 	res = db.session.scalars(stmt).all()
+	app.logger.debug("query result: \n" + str(res))
+
 	return res
 
 def findCategoriaWithNomeLike(hint):
 	hint = f'%{hint}%'
-	stmt =text("SELECT * FROM categoria c WHERE c.nome LIKE :hint")
-	res = db.session.execute(stmt, {'hint': hint}).all()
+	res = db.session.query(Categoria).filter(Categoria.nome.like(hint))
+	app.logger.info("Result: " + str(res))
+
 	return res

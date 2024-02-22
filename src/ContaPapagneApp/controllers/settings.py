@@ -10,10 +10,13 @@ def dashboard():
 
 @set.route('/createCategoria',  methods=['POST'])
 def createCategoria():
-	cat = Categoria(nome=request.form.get('nome_categoria'), descrizione=request.form.get('descrizione_categoria'), tipologia=int(request.form.get('tipologia_categoria')))
+	cat = Categoria(nome=request.form.get('nome_categoria'),
+				  descrizione=request.form.get('descrizione_categoria'), 
+				  colore=request.form.get('colore_categoria'), 
+				  tipologia=int(request.form.get('tipologia_categoria')))
 	app.logger.info("Categoria da persistere: " + str(cat))
-	result = catRepo.createCategoria(cat)
-	return '';
+	catRepo.createCategoria(cat)
+	return render_template('set/settings.html')
 
 @set.route('/listCategorie',  methods=['GET'])
 def listCategorie():

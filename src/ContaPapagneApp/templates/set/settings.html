@@ -1,26 +1,30 @@
 <div class="container mt-4">
-	<form id="categoria-form" class="bg-light p-4 border rounded" hx-post="{{ url_for('settings.createCategoria') }}" hx-swap="outerHTML">
+	<form id="categoria-form" class="bg-light p-4 border rounded" hx-post="{{ url_for('settings.createCategoria') }}" hx-target="main">
 			<div class="mb-3">
 					<label for="nome_categoria" class="form-label">Nome</label>
 					<input type="text" id="nome_categoria" name="nome_categoria" class="form-control" placeholder="Nome">
+			</div>
+			<div>
+				<label for="categoria_colore">Colore:</label>
+				<input type="color" id="categoria_colore" name="categoria_colore">
 			</div>
 			<div class="mb-3">
 					<label class="form-label">Tipologia</label>
 					<div class="d-flex justify-content-around">
 							<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="tipologia" id="solo_entrate" value="0">
+									<input class="form-check-input" type="radio" name="tipologia_categoria" id="solo_entrate" value="0">
 									<label class="form-check-label" for="solo_entrate">
 											💹 Solo entrate
 									</label>
 							</div>
 							<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="tipologia" id="solo_uscite" value="1">
+									<input class="form-check-input" type="radio" name="tipologia_categoria" id="solo_uscite" value="1">
 									<label class="form-check-label" for="solo_uscite">
 											📉 Solo Uscite
 									</label>
 							</div>
 							<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="tipologia" id="entrambe" value="2">
+									<input class="form-check-input" type="radio" name="tipologia_categoria" id="entrambe" value="2">
 									<label class="form-check-label" for="entrambe">
 											🔄 Entrambe
 									</label>

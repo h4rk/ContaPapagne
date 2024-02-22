@@ -7,11 +7,13 @@ class Categoria(db.Model):
 	
 	id_categoria = mapped_column(Integer, primary_key=True, autoincrement=True)
 	nome = mapped_column(String)
+	colore = mapped_column(String)
 	tipologia = mapped_column(Integer)
 	descrizione = mapped_column(String, nullable=True)
 
-	def __init__(self, nome, tipologia, descrizione):
+	def __init__(self, nome, tipologia, descrizione, colore):
 		self.nome = nome
+		self.colore = colore
 		self.tipologia = tipologia
 		self.descrizione = descrizione
 
@@ -25,6 +27,10 @@ class Categoria(db.Model):
 			raise ValueError('Il valore "tipologia" per la tabella "Categoria" deve essere uno tra [0, 1, 2].')
 		else:
 			return tipologia
+		
+	def toDict(self):
+		# return {"value":self.id_categoria, "text":self.nome, "color":self.colore}
+		return {"value":self.id_categoria, "text":self.nome}
 
 	def __str__(self):
 		return 'Categoria(id='+ str(self.id_categoria) +', nome= '+ str(self.nome) +', tipologia='+str(self.tipologia)+', descrizione='+str(self.descrizione)+' )'
