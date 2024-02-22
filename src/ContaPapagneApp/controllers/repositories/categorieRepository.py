@@ -17,7 +17,7 @@ def listCategorie():
 
 def findCategoriaWithNomeLike(hint):
 	hint = f'%{hint}%'
-	res = db.session.query(Categoria).filter(Categoria.nome.like(hint))
+	res = db.session.query(Categoria).filter(Categoria.nome.like(hint)).all()
 	app.logger.info("Result: " + str(res))
 
 	return res
