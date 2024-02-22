@@ -29,8 +29,7 @@ class Categoria(db.Model):
 			return tipologia
 		
 	def toDict(self):
-		# return {"value":self.id_categoria, "text":self.nome, "color":self.colore}
-		return {"value":self.id_categoria, "text":self.nome}
+		return {"value":self.id_categoria, "text":self.nome, "color":self.colore}
 
 	def __str__(self):
 		return 'Categoria(id='+ str(self.id_categoria) +', nome= '+ str(self.nome) +', tipologia='+str(self.tipologia)+', descrizione='+str(self.descrizione)+' )'
