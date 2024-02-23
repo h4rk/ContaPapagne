@@ -1,5 +1,5 @@
-<div id="res_fetch">
-	{% for cat in categorie %}
-	<div class="category-item">{{ cat.nome }}</div>
-	{% endfor %}
+{% for cat in categorie %}
+<div class="category-item" onclick="addCategoryToMulti(this)" style="background-color:{{cat.colore}}" id="{{cat.id}}">
+	<span>{{ cat.nome }}</span>
 </div>
+{% endfor %}

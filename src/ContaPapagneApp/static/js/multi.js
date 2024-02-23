@@ -1,4 +1,12 @@
+function getDeleteSpan() {
+	let deleteSpan = document.createElement('span');
+	deleteSpan.setAttribute('class', 'deleteSpan');
+	deleteSpan.text('x');
+	return deleteSpan;
+}
+
 function addCategoryToMulti(e) {
+	console.log('addCategoryToMulti' + JSON.stringify(e.target));
 	//Recupero il multiDiv, ovvero l'elemento che contiene graficamente le categorie
 	const div = document.getElementById("multiDiv");
 
@@ -8,15 +16,16 @@ function addCategoryToMulti(e) {
 
 	//Recupero la sorgente dell'evento, ovvero il div che contiene la categoria da aggiungere
 	// nel multiDiv e nel multiInput
-	const category = e.target.value;
+	const catDiv = e.target;
 
 	//Creo il nuovo elemento da inserire nel multiDiv
-	let dx = document.createElement('div');
-	// TODO Customizzare con id valori, classi e onclick
+	let dx = catDiv;
+	dx.appendChild(getDeleteSpan());
 
 	//Creo il nuovo elemento option da inserire nel select
 	let ix = document.createElement('option');
-	// TODO customizzare l'evento con value e id
+	ix.text=catDiv.querySelector('span').text;
+	ix.setAttribute('id',catDiv.getAttribute('id'));
 
 	//Aggiungo la nuova categoria al multiDiv
 	div.appendChild(dx);
