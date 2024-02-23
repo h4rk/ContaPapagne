@@ -1,5 +1,5 @@
 <style>
-	.tags-look .tagify__dropdown__item{
+	.tags-look .tagify__dropdown__item {
 		display: inline-block;
 		vertical-align: middle;
 		border-radius: 3px;
@@ -11,93 +11,95 @@
 		color: black;
 		transition: 0s;
 	}
-	
-	.tags-look .tagify__dropdown__item--active{
+
+	.tags-look .tagify__dropdown__item--active {
 		color: black;
 	}
-	
-	.tags-look .tagify__dropdown__item:hover{
+
+	.tags-look .tagify__dropdown__item:hover {
 		background: lightyellow;
 		border-color: gold;
 	}
-	
+
 	.tags-look .tagify__dropdown__item--hidden {
-			max-width: 0;
-			max-height: initial;
-			padding: .3em 0;
-			margin: .2em 0;
-			white-space: nowrap;
-			text-indent: -20px;
-			border: 0;
+		max-width: 0;
+		max-height: initial;
+		padding: .3em 0;
+		margin: .2em 0;
+		white-space: nowrap;
+		text-indent: -20px;
+		border: 0;
 	}
 
-
-
-/* styling per  category labels */
+	/* styling per  category labels */
 	@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 	.tag {
 		display: inline-block;
 		padding: 6px 12px;
-		background-color: #f8f8f8; 
+		background-color: #f8f8f8;
 		border: none;
 		border-radius: 3px;
 		margin: 4px;
 		position: relative;
 		font-family: 'Roboto', sans-serif;
-		box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.1); 
+		box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.1);
 	}
-	
+
 	.tag:hover {
-		background-color: #f0f0f0; 
+		background-color: #f0f0f0;
 	}
-	
-	.rimuovi img {  
-		width: 12px;   
-		height: 12px; 
+
+	.rimuovi img {
+		width: 12px;
+		height: 12px;
 		cursor: pointer;
-		opacity: 0.7;              
-		transition: opacity 0.2s ease; 
+		opacity: 0.7;
+		transition: opacity 0.2s ease;
 	}
-	
+
 	.rimuovi img:hover {
-		opacity: 1;  }
+		opacity: 1;
+	}
 
-/* styling per  toggle */
+	/* styling per  toggle */
 
-.highlight-checkbox {
-	background-color: #ffc6a2;
-    border-color: #ffc6a2;
-}
+	.highlight-checkbox {
+		background-color: #ffc6a2;
+		border-color: #ffc6a2;
+	}
 
 	.highlight {
-	font-weight: bold;
-	padding: 2px 6px;
-	border-radius: 4px;
-	box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.entrata.highlight {
-	color: #0d6efd; 
-	background-color: #d1e7ff; 
-	border: 1px solid #0d6efd; 
-}
-.uscita.highlight {
-	color: #D25A0F; 
-	background-color: #ffc6a2; 
-	border: 1px solid #D25A0F; 
-}
-
-	.hide { 
-    display: none !important; 
-}
-	.icon-container img:nth-child(2) {
-		display: none; 
+		font-weight: bold;
+		padding: 2px 6px;
+		border-radius: 4px;
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 	}
-	
+
+	.entrata.highlight {
+		color: #0d6efd;
+		background-color: #d1e7ff;
+		border: 1px solid #0d6efd;
+	}
+
+	.uscita.highlight {
+		color: #D25A0F;
+		background-color: #ffc6a2;
+		border: 1px solid #D25A0F;
+	}
+
+	.hide {
+		display: none !important;
+	}
+
+	.icon-container img:nth-child(2) {
+		display: none;
+	}
+
 	.icon-container:hover img:nth-child(1) {
 		display: none;
 	}
-	
+
 	.icon-container:hover img:nth-child(2) {
 		display: block;
 	}
@@ -167,144 +169,112 @@
 	}
 </style>
 
-<form id="movimento-form" hx-post="{{url_for('movimenti.createMovimento')}}" hx-target="main"> 
-
-	<fieldset class="mb-3"> 
+<form id="movimento-form" hx-post="{{url_for('movimenti.createMovimento')}}" hx-target="main">
+	<fieldset class="mb-3">
 		<label for="tipologia_movimento">Tipo di form:</label>
-			<div class="form-check form-switch">
-				<input class="form-check-input highlight-checkbox" id="tipologia_movimento" name="tipologia_movimento" type="checkbox" value="true" onchange="switchTipoMovimento();toggleTooltipVisibility();boldTipologia()">
-				<label class="form-check-label" for="tipologia_movimento">
-					<span id="uscita" class="uscita highlight">USCITA</span>
-					<span id="entrata"class="hide entrata">ENTRATA</span>
-				</label>
-			</div>
+		<div class="form-check form-switch">
+			<input class="form-check-input highlight-checkbox" id="tipologia_movimento" name="tipologia_movimento"
+				type="checkbox" value="true" onchange="switchTipoMovimento();toggleTooltipVisibility();boldTipologia()">
+			<label class="form-check-label" for="tipologia_movimento">
+				<span id="uscita" class="uscita highlight">USCITA</span>
+				<span id="entrata" class="hide entrata">ENTRATA</span>
+			</label>
+		</div>
 	</fieldset>
 
 	<div class="form-row mb-3 d-flex">
-			<div class="form-group col-md-4" style="margin-right: 1rem;">
-					<label for="data_movimento" >Data:</label> 
-					<input class="form-control" id="data_movimento" name="data_movimento" type="date" placeholder="Data Movimento" required>
-			</div>
-			<div class="form-group col-md-6">
-					<label for="importo_movimento">Importo:</label>
-					<div class="input-group"> 
-							<div class="input-group-prepend">
-									<span class="input-group-text">€</span> 
-							</div>
-							<input class="form-control" id="importo_movimento" name="importo_movimento" type="number" min="0" step="0.01" placeholder="0.00" required>
-					</div>    
-			</div>
-	</div>
-
-	<div class="form-group mb-3"> 
-		<label for="categoria_movimento">Categoria:</label>
-		<div class="input-group"> 
-				<input class="form-control some_class_name" id="categoria_movimento" name="categoria_movimento" type="text"
-						hx-get="/movimenti/fetchCategorie" hx-target="#res_fetch" hx-swap="innerHTML"
-						hx-trigger="keyup changed delay:500ms" hx-indicator="#fetch-indicator" required placeholder='write some tags'>
-				<div id="res_fetch" class="autocomplete-results"></div>
+		<div class="form-group col-md-4" style="margin-right: 1rem;">
+			<label for="data_movimento">Data:</label>
+			<input class="form-control" id="data_movimento" name="data_movimento" type="date"
+				placeholder="Data Movimento" required>
 		</div>
-</div>
-<!-- tagify -->
-
-<div class="form-group mb-3"> 
-	<label for="categoria_movimento">Categoria:</label>
-	<div class="input-group"> 
-		<input name='input-custom-dropdown' class='some_class_name' placeholder='write some tags' value=''>
-			<div id="res_fetch" class="autocomplete-results"></div>
+		<div class="form-group col-md-6">
+			<label for="importo_movimento">Importo:</label>
+			<div class="input-group">
+				<div class="input-group-prepend">
+					<span class="input-group-text">€</span>
+				</div>
+				<input class="form-control" id="importo_movimento" name="importo_movimento" type="number" min="0"
+					step="0.01" placeholder="0.00" required>
+			</div>
+		</div>
 	</div>
-</div>
 
-  <div class="form-group mb-3">
-      <label for="risarcimento_movimento" class="tooltip-label d-flex" style="gap:5px">Risarcimento
-				<span id="tooltip-container" class="tooltip-trigger icon-container" data-bs-toggle="tooltip" data-bs-placement="top" title="Your helpful tooltip text" style="width: 20px; height: 20px;">
-					<img src="../static/img/question-mark.svg" alt="Question Mark" width="16" height="16"> 
-					<img src="../static/img/question-mark-full.svg" alt="Question Mark" width="16" height="16">
-				</span>
-			</label> 
-      <input class="form-control" id="risarcimento_movimento" name="risarcimento_movimento" type="text" placeholder="Importo Risarcimento" disabled>
-      <small class="form-text text-muted" id="risarcimentoHelp">Compilare solo se applicabile.</small> 
-  </div> 
+
+	<div class="form-group mb-3">
+		<!-- questa è la box per la visualizzazione delle categorie selezionate -->
+		<div id="multiBox"></div>
+	</div>
+	<div class="form-group mb-3">
+		<!-- Questa è la barra di ricerca con la dropdown per i risultati -->
+		<textarea id="multiRicerca" cols="30" rows="1" hx-get="{{url_for('movimenti.fetchCategorie')}}" hx-trigger="#multiRicerca changed delay:300ms" hx-target="#multiDropdown"></textarea>
+		<div id="multiDropdwon"></div>
+	</div>
+	<div>
+		<!-- Questa è la select hidden che verrà inviata con la submit -->
+		<select name="categorie_movimento" id="categorie_movimento" hidden></select>
+	</div>
+
+	<div class="form-group mb-3">
+		<label for="risarcimento_movimento" class="tooltip-label d-flex" style="gap:5px">Risarcimento
+			<span id="tooltip-container" class="tooltip-trigger icon-container" data-bs-toggle="tooltip"
+				data-bs-placement="top" title="Your helpful tooltip text" style="width: 20px; height: 20px;">
+				<img src="../static/img/question-mark.svg" alt="Question Mark" width="16" height="16">
+				<img src="../static/img/question-mark-full.svg" alt="Question Mark" width="16" height="16">
+			</span>
+		</label>
+		<input class="form-control" id="risarcimento_movimento" name="risarcimento_movimento" type="text"
+			placeholder="Importo Risarcimento" disabled>
+		<small class="form-text text-muted" id="risarcimentoHelp">Compilare solo se applicabile.</small>
+	</div>
 	<div class="form-group mb-4">
 		<label for="descrizione_movimento">Descrizione:</label>
-		<textarea class="form-control" id="descrizione_movimento" name="descrizione_movimento" placeholder="Note Aggiuntive" rows="1"></textarea>
-</div> 
-<!-- Test label categorie -->
-<div class="tag">
-  <span class="label-text">Opzione 1</span>
-  <span class="rimuovi">
-    <img src="../static/img/close.svg" alt="close"> 
-  </span>
-</div>
-
-
-
-
-	<button type="submit" class="btn btn-primary btn-lg">Registra</button> 
+		<textarea class="form-control" id="descrizione_movimento" name="descrizione_movimento"
+			placeholder="Note Aggiuntive" rows="1"></textarea>
+	</div>
+	<!-- Test label categorie -->
+	<div class="tag">
+		<span class="label-text">Opzione 1</span>
+		<span class="rimuovi">
+			<img src="../static/img/close.svg" alt="close">
+		</span>
+	</div>
+	<button type="submit" class="btn btn-primary btn-lg">Registra</button>
 </form>
-
-
 <script>
+	var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+	var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+		return new bootstrap.Tooltip(tooltipTriggerEl)
+	})
 
-	var input = document.querySelector('input[name="input-custom-dropdown"]'),
-	
-			tagify = new Tagify(input, {
-				whitelist: ["ciao"],
-				maxTags: 10,
-				dropdown: {
-					maxItems: 20,
-					classname: "tags-look",
-					enabled: 0,
-					closeOnSelect: false
-				}
-			})
-	
-	</script>
+	function toggleTooltipVisibility() {
+		var tooltipContainer = document.getElementById("tooltip-container");
 
-
-
-
-<script>
-var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-  return new bootstrap.Tooltip(tooltipTriggerEl)
-})
-
-
-
-function toggleTooltipVisibility() {
-	var tooltipContainer = document.getElementById("tooltip-container");
-
-	if (tooltipContainer.classList.contains("hide")) {
+		if (tooltipContainer.classList.contains("hide")) {
 			tooltipContainer.classList.remove("hide");
-	} else {
+		} else {
 			tooltipContainer.classList.add("hide");
+		}
 	}
-}
 
-function boldTipologia() {
-	var uscita = document.getElementById("uscita");
-	var entrata = document.getElementById("entrata");
-	var checkbox = document.getElementById("tipologia_movimento");
+	function boldTipologia() {
+		var uscita = document.getElementById("uscita");
+		var entrata = document.getElementById("entrata");
+		var checkbox = document.getElementById("tipologia_movimento");
 
-	if (checkbox.checked) {
-		checkbox.classList.remove("highlight-checkbox")
+		if (checkbox.checked) {
+			checkbox.classList.remove("highlight-checkbox")
 			entrata.classList.add("highlight");
 			entrata.classList.remove("hide");
 			uscita.classList.remove("highlight");
 			uscita.classList.add("hide");
 
-	} else {
+		} else {
 			checkbox.classList.add("highlight-checkbox")
 			uscita.classList.add("highlight");
 			uscita.classList.remove("hide");
 			entrata.classList.remove("highlight");
 			entrata.classList.add("hide");
+		}
 	}
-}
-
 </script>
-
-
-
-	
