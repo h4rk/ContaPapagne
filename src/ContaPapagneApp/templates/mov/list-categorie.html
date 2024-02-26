@@ -1,5 +1,5 @@
 {% for cat in categorie %}
-<div class="category-item" onclick="addCategoryToMulti(this)" style="background-color:{{cat.colore}}" id="{{cat.id}}">
+<div onclick="addCategoryToMulti(event)" style="background-color:{{ cat.colore }}" id="{{ cat.id_categoria }}">
 	<span>{{ cat.nome }}</span>
 </div>
 {% endfor %}
