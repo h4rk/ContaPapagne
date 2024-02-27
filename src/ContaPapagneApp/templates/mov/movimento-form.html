@@ -200,7 +200,6 @@
 		</div>
 	</div>
 
-
 	<div class="form-group mb-3">
 		<!-- questa è la box per la visualizzazione delle categorie selezionate -->
 		<div id="multiBox"></div>
@@ -212,7 +211,7 @@
 	</div>
 	<div>
 		<!-- Questa è la select hidden che verrà inviata con la submit -->
-		<select name="categorie_movimento" id="categorie_movimento" hidden></select>
+		<select name="categorie_movimento" id="categorie_movimento" hidden multiple></select>
 	</div>
 
 	<div class="form-group mb-3">
@@ -231,13 +230,6 @@
 		<label for="descrizione_movimento">Descrizione:</label>
 		<textarea class="form-control" id="descrizione_movimento" name="descrizione_movimento"
 			placeholder="Note Aggiuntive" rows="1"></textarea>
-	</div>
-	<!-- Test label categorie -->
-	<div class="tag">
-		<span class="label-text">Opzione 1</span>
-		<span class="rimuovi">
-			<img src="../static/img/close.svg" alt="close">
-		</span>
 	</div>
 	<button type="submit" class="btn btn-primary btn-lg">Registra</button>
 </form>
