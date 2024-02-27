@@ -34,7 +34,6 @@ class Movimento(db.Model):
 				flag_entrata = False
 			descrizione = dict.get('descrizione_movimento')
 			risarcimento = dict.get('risarcimento')
-
 			return Movimento(data=data, importo=importo,flag_entrata=flag_entrata, id_movimento=id_movimento, descrizione=descrizione, risarcimento=risarcimento)
 			
 		except Exception as e:

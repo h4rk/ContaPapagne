@@ -41,7 +41,7 @@
         <h5 class="card-title fw-bold mb-0">Lista Movimenti</h5>
       </div>
       <div class="card-body">
-        <button hx-get="{{url_for('movimenti.listaMovimenti')}}" hx-trigger="click" hx-indicator="#spinner-id" hx-target="this" class="btn btn-primary me-2">
+        <button hx-get="{{url_for('movimenti.listaMovimenti')}}" hx-trigger="load" hx-indicator="#spinner-id" hx-target="this" hx-swap="outerHTML" class="btn btn-primary me-2">
           Vai alla lista
           <img id="spinner-id" src="../../static/img/spinning-circles.svg" alt="Loading..." class="htmx-indicator" style="display: none;">
         </button> 

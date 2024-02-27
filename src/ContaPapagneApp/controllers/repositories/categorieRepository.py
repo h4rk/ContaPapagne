@@ -21,3 +21,10 @@ def findCategoriaWithNomeLike(hint):
 	app.logger.info("Result: " + str(res))
 
 	return res
+
+def listNcategorie(l: list[int]) -> list[Categoria]:
+	r: list[Categoria] = []
+	for id in l:
+		r.append(db.session.query(Categoria).filter(Categoria.id_categoria == id).one())
+	print(r)
+	return r
