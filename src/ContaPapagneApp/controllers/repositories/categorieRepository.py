@@ -1,5 +1,5 @@
 from models.dbconfig import db
-from sqlalchemy import select, text
+from sqlalchemy import select, and_
 from models.categoria import Categoria
 from flask import current_app as app
 
@@ -15,10 +15,13 @@ def listCategorie():
 
 	return res
 
-def findCategoriaWithNomeLike(hint):
+def findCategoriaWithNomeLikeAndTipoMovimento(hint:str, tipologia:str):
 	hint = f'%{hint}%'
-	res = db.session.query(Categoria).filter(Categoria.nome.like(hint)).all()
-	app.logger.info("Result: " + str(res))
+	excluded = 1 if tipologia=="true" else 0
+	print('-----: Excluded: ' + str(excluded))
+	stmt = select(Categoria).where(and_(Categoria.nome.like(hint),Categoria.tipologia != excluded))
+	res = db.session.execute(stmt).scalars()
+	app.logger.info("-----: Result: " + str(res))
 
 	return res
 
