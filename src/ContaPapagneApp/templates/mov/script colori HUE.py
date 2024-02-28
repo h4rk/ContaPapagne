@@ -42,4 +42,4 @@ def get_contrasting_text_color(hex_background):
 hex_background = "#1b1caf"  # A sample HEX color for demonstration
 contrasting_text_hex = get_contrasting_text_color(hex_background)
 
-contrasting_text_hex
+print(f"Original HEX: {hex_background}, Contrasting Text HEX: {contrasting_text_hex}")
