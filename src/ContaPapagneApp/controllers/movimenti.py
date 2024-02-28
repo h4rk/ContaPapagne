@@ -46,7 +46,7 @@ def putMovimento():
 @mov.route('/fetchCategorie', methods=['GET'])
 def fetchCategorie():
 	if (request.args.get('multiRicerca') != ''):
-		categorie = catRepo.findCategoriaWithNomeLike(request.args.get('multiRicerca'))
+		categorie = catRepo.findCategoriaWithNomeLikeAndTipoMovimento(request.args.get('multiRicerca'), request.args.get('tipo_movimento'))
 		app.logger.debug(categorie)
 	else:
 		categorie=[]

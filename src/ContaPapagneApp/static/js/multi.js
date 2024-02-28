@@ -75,5 +75,10 @@ window.addEventListener("load", function() {
 				}
 			}
 		}
-	})
+	});
+	document.body.addEventListener('htmx:configRequest', function(configRequestEvent) {
+		if(configRequestEvent.target.id=='multiRicerca') {
+			configRequestEvent.detail.parameters['tipo_movimento'] = document.getElementById('tipologia_movimento').checked;
+		}
+	});
 })
