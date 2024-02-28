@@ -1,38 +1,36 @@
 import colorsys
 
-def hex_to_rgb(hex_color):
+def hex_to_hsl(hex_color):
+    """Convert HEX to HSL"""
     hex_color = hex_color.lstrip('#')
-    return tuple(int(hex_color[i:i+2], 16) for i in (0, 2, 4))
+    r, g, b = (int(hex_color[i:i+2], 16) for i in (0, 2, 4))
+    return colorsys.rgb_to_hls(r/255, g/255, b/255)
 
-def rgb_to_hls(rgb_color):
-    return colorsys.rgb_to_hls(rgb_color[0]/255, rgb_color[1]/255, rgb_color[2]/255)
-
-def adjust_hls_lightness(hls_color, amount=0.5):
-    h, l, s = hls_color
-    l = max(min(l * amount, 1.0), 0.0)  # Ensure l stays between 0 and 1
+def adjust_lightness_hsl(hsl_color, amount=0.5):
+    """Adjust the lightness of an HSL color"""
+    h, l, s = hsl_color
+    l = max(min(l * amount, 1), 0)  # Ensure lightness stays within [0, 1]
     return (h, l, s)
 
-def hls_to_rgb(hls_color):
-    return colorsys.hls_to_rgb(*hls_color)
-
-def rgb_to_hex(rgb_color):
+def hsl_to_hex(hsl_color):
+    """Convert HSL back to HEX"""
+    rgb_color = colorsys.hls_to_rgb(*hsl_color)
     return '#' + ''.join(f'{int(x*255):02x}' for x in rgb_color)
 
-def get_readable_hex_color(hex_background):
-    rgb_background = hex_to_rgb(hex_background)
-    hls_background = rgb_to_hls(rgb_background)
-    _, lightness, _ = hls_background
+def get_readable_hex_color(hex_color):
+    """Generate a readable HEX color for text based on the HEX background"""
+    hsl_color = hex_to_hsl(hex_color)
+    _, lightness, _ = hsl_color
     if lightness > 0.5:
-        # Background is light, darken it for text
-        text_hls = adjust_hls_lightness(hls_background, 0.5)
+        # Background is light, make text darker
+        text_hsl = adjust_lightness_hsl(hsl_color, 0.5)
     else:
-        # Background is dark, lighten it for text
-        text_hls = adjust_hls_lightness(hls_background, 1.5)
-    text_rgb = hls_to_rgb(text_hls)
-    return rgb_to_hex(text_rgb)
+        # Background is dark, make text lighter
+        text_hsl = adjust_lightness_hsl(hsl_color, 1.5)
+    return hsl_to_hex(text_hsl)
 
 # Example usage
-hex_background = "#8f77b5"  # A sample HEX color
+hex_background = "#1b1caf"  # A sample HEX color
 readable_hex = get_readable_hex_color(hex_background)
 
 print(f"Original HEX: {hex_background}, Readable Nuanced HEX: {readable_hex}")
