@@ -39,7 +39,7 @@ def get_contrasting_text_color(hex_background):
     return hsl_to_hex(adjusted_hsl)
 
 # Example usage
-hex_background = "#1b1caf"  # A sample HEX color for demonstration
+hex_background = "#1e0170"  # A sample HEX color for demonstration
 contrasting_text_hex = get_contrasting_text_color(hex_background)
 
 print(f"Original HEX: {hex_background}, Contrasting Text HEX: {contrasting_text_hex}")
